@@ -1,0 +1,30 @@
+[
+  {
+    "name": "news.baidu.com",
+    "queryUrl": "http://news.baidu.com/ns?word=%s",
+    "charset": "utf8",
+    "method": {
+      "type": "jsoup",
+      "data": ".result > h3 > a"
+    }
+  },
+  {
+    "name": "news.sogou.com",
+    "queryUrl": "http://news.sogou.com/news?query=%s",
+    "charset": "utf8",
+    "method": {
+      "type": "jsoup",
+      "data": ".vrTitle > a"
+    }
+  },
+  {
+    "name": "weibo.com",
+    "queryUrl": "http://s.weibo.com/weibo/%s",
+    "charset": "utf8",
+    "method": {
+      "type": "regex",
+      "data": "http:\\\\/\\\\/weibo\\.com\\\\/[0-9]+\\\\/[0-9a-zA-Z]+\\?refer_flag=[0-9]+_",
+      "strip": "\\\\"
+    }
+  }
+]
