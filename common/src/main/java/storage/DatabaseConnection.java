@@ -2,6 +2,7 @@ package storage;
 
 import content.Record;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  * Connect to database to store or retrieve result.
  */
 public class DatabaseConnection {
-    public List<Record> get(String id) {
+    public HashMap<String, String>[] get(String id) {
         return null;
     }
 }

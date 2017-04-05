@@ -3,7 +3,6 @@ package com.hehehey.ghost.worker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hehehey.ghost.source.SearchSource;
-import content.Record;
 import com.hehehey.ghost.message.TaskAssignment;
 import storage.DatabaseConnection;
 import util.SecurityUtil;
@@ -68,15 +67,6 @@ public class SingleThreadWorker {
             logger.log(Level.SEVERE, "Unable to feed.", e);
             return "";
         }
-    }
-
-    private Record[] query(String id) {
-        if (!hasInitialized)
-            init();
-
-        Record[] emptyRecords = new Record[0];
-
-        return databaseConnection.get(id).toArray(emptyRecords);
     }
 
     private TaskAssignment dispatch(String[] names, int size) {

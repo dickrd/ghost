@@ -89,7 +89,7 @@ public class RedisConnection {
         }
     }
 
-    public List<String> getUrls(String id, int size) {
+    public String[] getUrls(String id, String name, int size) {
         List<String> urls = new ArrayList<>();
 
         try (Jedis jedis = pool.getResource()) {
@@ -100,6 +100,6 @@ public class RedisConnection {
             logger.log(Level.WARNING, "Get failed.", e);
         }
 
-        return urls;
+        return urls.toArray(new String[0]);
     }
 }
