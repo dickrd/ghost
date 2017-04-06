@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
-        <module>sourcing</module>
+        <module>search</module>
         <module>schedule</module>
         <module>common</module>
     </modules>

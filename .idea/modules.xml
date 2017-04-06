@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://E://ghost/ghost.iml" filepath="E://ghost/ghost.iml" />
       <module fileurl="file://$PROJECT_DIR$/schedule/schedule.iml" filepath="$PROJECT_DIR$/schedule/schedule.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sourcing/sourcing.iml" filepath="$PROJECT_DIR$/sourcing/sourcing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/search/search.iml" filepath="$PROJECT_DIR$/search/search.iml" />
     </modules>
   </component>
 </project>

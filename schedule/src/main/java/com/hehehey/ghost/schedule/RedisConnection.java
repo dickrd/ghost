@@ -1,10 +1,10 @@
 package com.hehehey.ghost.schedule;
 
-import com.hehehey.ghost.message.UserRequest;
+import com.hehehey.ghost.message.frontend.UserRequest;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-import util.SecurityUtil;
+import com.hehehey.ghost.util.SecurityUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;

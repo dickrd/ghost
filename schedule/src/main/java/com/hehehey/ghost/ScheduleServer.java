@@ -1,9 +1,10 @@
 package com.hehehey.ghost;
 
+import com.hehehey.ghost.resource.UrlResource;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import com.hehehey.ghost.resource.Task;
+import com.hehehey.ghost.resource.TaskResource;
 
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
@@ -20,7 +21,7 @@ public class ScheduleServer {
 
     public static void main(String[] args) {
         URI baseUri = UriBuilder.fromUri("http://0.0.0.0/").port(666).build();
-        ResourceConfig config = new ResourceConfig(Task.class);
+        ResourceConfig config = new ResourceConfig(TaskResource.class, UrlResource.class);
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(baseUri, config);
 
         //noinspection InfiniteLoopStatement

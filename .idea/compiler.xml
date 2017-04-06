@@ -8,13 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
         <module name="schedule" />
-        <module name="sourcing" />
+        <module name="search" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
       <module name="ghost" target="1.8" />
       <module name="schedule" target="1.8" />
+      <module name="search" target="1.8" />
       <module name="sourcing" target="1.8" />
     </bytecodeTargetLevel>
   </component>
