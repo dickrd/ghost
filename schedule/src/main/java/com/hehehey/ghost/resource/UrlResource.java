@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * Created by Dick Zhou on 4/6/2017.
- *
+ * Api related to web page url, including add new urls and retrieve them.
  */
 @Path("/url")
 public class UrlResource {

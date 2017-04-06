@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.hehehey.ghost.message.frontend.QueryResponse;
 import com.hehehey.ghost.message.frontend.UserRequest;
 import com.hehehey.ghost.message.task.TaskProgress;
-import com.hehehey.ghost.message.task.TaskResult;
 import com.hehehey.ghost.schedule.RedisConnection;
 import com.hehehey.ghost.storage.DatabaseConnection;
 
@@ -14,7 +13,7 @@ import java.util.HashMap;
 
 /**
  * Created by Dick Zhou on 3/30/2017.
- *
+ * Api related to task creation, query and etc.
  */
 @Path("/task")
 public class TaskResource {
@@ -65,30 +64,5 @@ public class TaskResource {
     public String query(@PathParam("id") String id) {
         HashMap<String, String>[] data = databaseConnection.get(id);
         return gson.toJson(new QueryResponse(id, data));
-    }
-
-    /**
-     * Update a task progress by providing the result.
-     * @param jsonString The (partial) result of the task.
-     * @return Task status.
-     */
-    @POST
-    @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String submitTask(@PathParam("id") String id, String jsonString) {
-        TaskProgress taskProgress;
-        try {
-            TaskResult taskResult = gson.fromJson(jsonString, TaskResult.class);
-
-            //TODO Save data and count remaining urls.
-            taskResult.getData();
-            taskProgress = new TaskProgress(id, TaskProgress.Status.ok, 0);
-        } catch (Exception e) {
-            taskProgress = new TaskProgress("", TaskProgress.Status.error, 0);
-            taskProgress.setDetail(e.getLocalizedMessage());
-        }
-
-        return gson.toJson(taskProgress);
     }
 }
