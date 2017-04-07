@@ -5,7 +5,7 @@ import com.hehehey.ghost.message.Response;
 import com.hehehey.ghost.message.frontend.TaskProgress;
 import com.hehehey.ghost.message.frontend.UserRequest;
 import com.hehehey.ghost.schedule.RedisConnection;
-import com.hehehey.ghost.storage.DatabaseConnection;
+import com.hehehey.ghost.schedule.DatabaseConnection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -42,6 +42,29 @@ public class TaskResource {
                     response = new Response<>(Response.Status.unsupported, "");
                     break;
             }
+        } catch (Exception e) {
+            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+        }
+
+        return gson.toJson(response);
+    }
+
+    /**
+     * Get current results status of the task, not including data.
+     * @param id The task.
+     * @return Task status.
+     */
+    @GET
+    @Path("/words")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String dispatch(@DefaultValue("") @QueryParam("id") String id, @DefaultValue("1") @QueryParam("size") int size) {
+        Response response;
+        try {
+            if (id.contentEquals(""))
+                id = redisConnection.getTask();
+            String[] words = redisConnection.getSource(id, UserRequest.SourceType.search, size);
+            response = new Response<>(Response.Status.ok, words);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.getLocalizedMessage());
         }

@@ -1,12 +1,16 @@
 package com.hehehey.ghost;
 
 import com.hehehey.ghost.resource.UrlResource;
+import com.hehehey.ghost.schedule.MasterConfig;
+import com.hehehey.ghost.schedule.RedisConnection;
+import com.hehehey.ghost.util.JsonConfig;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import com.hehehey.ghost.resource.TaskResource;
 
 import javax.ws.rs.core.UriBuilder;
+import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,8 +23,16 @@ public class ScheduleServer {
 
     private static final Logger logger = Logger.getLogger(ScheduleServer.class.getName());
 
-    public static void main(String[] args) {
-        URI baseUri = UriBuilder.fromUri("http://0.0.0.0/").port(666).build();
+    public static void main(String[] args) throws IOException {
+        MasterConfig.reload();
+        logger.log(Level.INFO, "Configuration load.");
+
+        RedisConnection.newPool();
+        logger.log(Level.INFO, "Backend ready.");
+
+        URI baseUri = UriBuilder.fromUri(MasterConfig.INSTANCE.getBaseUrl())
+                .port(MasterConfig.INSTANCE.getPort())
+                .build();
         ResourceConfig config = new ResourceConfig(TaskResource.class, UrlResource.class);
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(baseUri, config);
 

@@ -1,6 +1,7 @@
 package com.hehehey.ghost.worker;
 
 import com.google.gson.Gson;
+import com.hehehey.ghost.message.Response;
 import com.hehehey.ghost.message.task.Assignment;
 import com.hehehey.ghost.message.task.SourcingResult;
 import com.hehehey.ghost.source.SearchSource;
@@ -23,6 +24,7 @@ public class SingleThreadSearchWorker extends Thread {
 
     private static final String configPath = "source.json";
     private static final String pathGetWork = "/task/words";
+    private static final String pathPutResult = "/url";
 
     private final Gson gson;
     private final String masterUrl;
@@ -58,8 +60,15 @@ public class SingleThreadSearchWorker extends Thread {
         while (true) {
             while (workMap.isEmpty()) {
                 try {
-                    Assignment assignment = gson.fromJson(httpClient.getAsString(masterUrl + pathGetWork),
-                            Assignment.class);
+                    Response response = gson.fromJson(httpClient.getAsString(masterUrl + pathGetWork),
+                            Response.class);
+                    if (response.getStatus() != Response.Status.ok) {
+                        logger.log(Level.WARNING, "Master error." + response.getData());
+                        Thread.sleep(random.nextInt(maxSleepMs));
+                        continue;
+                    }
+
+                    Assignment assignment = (Assignment) response.getData();
                     if (assignment.getTasks() != null && assignment.getTasks().length > 0) {
                         workMap.put(assignment.getId(), assignment.getTasks());
                     }
@@ -85,8 +94,7 @@ public class SingleThreadSearchWorker extends Thread {
                 try {
                     String[] links = searchSource.searchAll(keyword);
                     SourcingResult result = new SourcingResult(id, links);
-                    //TODO modify url.
-                    httpClient.postAsString(masterUrl, gson.toJson(result).getBytes(HttpClient.defaultCharset));
+                    httpClient.putString(masterUrl + pathPutResult, gson.toJson(result));
                 } catch (Exception e) {
                     logger.log(Level.WARNING, "Keyword failed: " + keyword, e);
                 }

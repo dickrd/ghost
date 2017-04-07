@@ -1,4 +1,4 @@
-package com.hehehey.ghost.storage;
+package com.hehehey.ghost.schedule;
 
 import java.util.HashMap;
 

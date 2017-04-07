@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class HttpClient {
 
-    public static final Charset defaultCharset = StandardCharsets.UTF_8;
+    private static final Charset defaultCharset = StandardCharsets.UTF_8;
 
     private static final String userAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
     private static final String accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
@@ -46,8 +46,15 @@ public class HttpClient {
         return EntityUtils.toString(entity, charset);
     }
 
-    public String postAsString(String urlString, byte[] data) throws IOException {
-        HttpEntity entity = connect(HttpMethod.get, urlString, data);
+    /**
+     * PUT string data to target and parse result as string. Using default encoding.
+     * @param urlString Target url.
+     * @param data      String data to put.
+     * @return  Server response.
+     * @throws IOException If error happens.
+     */
+    public String putString(String urlString, String data) throws IOException {
+        HttpEntity entity = connect(HttpMethod.put, urlString, data.getBytes(defaultCharset));
         return EntityUtils.toString(entity);
     }
 

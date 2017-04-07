@@ -2,15 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="558e0e34-579f-42e2-883c-f3b9c80d9ea9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/Response.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/frontend/TaskProgress.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/task/TaskProgress.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Dick_Zhou.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/MasterConfig.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/frontend/QueryResponse.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/storage/DatabaseConnection.java" afterPath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/storage/DatabaseConnection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/content/RegexContent.java" afterPath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/content/RegexContent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/Response.java" afterPath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/Response.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/util/HttpClient.java" afterPath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/util/HttpClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/ScheduleServer.java" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/ScheduleServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/DataResource.java" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/DataResource.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/UrlResource.java" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/UrlResource.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/RedisConnection.java" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/RedisConnection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/search/src/main/java/com/hehehey/ghost/worker/SingleThreadSearchWorker.java" afterPath="$PROJECT_DIR$/search/src/main/java/com/hehehey/ghost/worker/SingleThreadSearchWorker.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/storage/DatabaseConnection.java" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/DatabaseConnection.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -31,57 +35,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RedisConnection.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RedisConnection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/RedisConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="101" column="38" lean-forward="false" selection-start-line="101" selection-start-column="38" selection-end-line="101" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4020#4021#0" expanded="true" />
-                <element signature="e#4044#4045#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserRequest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/frontend/UserRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskProgress.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/frontend/TaskProgress.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-              <folding>
-                <element signature="e#358#359#0" expanded="true" />
-                <element signature="e#394#395#0" expanded="true" />
-                <element signature="e#422#423#0" expanded="true" />
-                <element signature="e#463#464#0" expanded="true" />
-                <element signature="e#503#504#0" expanded="true" />
-                <element signature="e#566#567#0" expanded="true" />
-                <element signature="e#624#625#0" expanded="true" />
-                <element signature="e#657#658#0" expanded="true" />
-                <element signature="e#689#690#0" expanded="true" />
-                <element signature="e#736#737#0" expanded="true" />
-                <element signature="e#778#779#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskResource.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="49" column="5" lean-forward="false" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+            <state relative-caret-position="294">
+              <caret line="36" column="90" lean-forward="false" selection-start-line="36" selection-start-column="90" selection-end-line="36" selection-end-column="90" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,38 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QueryResponse.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/frontend/QueryResponse.java">
+      <file leaf-file-name="SingleThreadSearchWorker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/search/src/main/java/com/hehehey/ghost/worker/SingleThreadSearchWorker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatabaseConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/storage/DatabaseConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="25" column="36" lean-forward="false" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
-              <folding>
-                <element signature="e#309#310#0" expanded="true" />
-                <element signature="e#333#334#0" expanded="true" />
-                <element signature="e#465#466#0" expanded="true" />
-                <element signature="e#492#493#0" expanded="true" />
-                <element signature="e#575#576#0" expanded="true" />
-                <element signature="e#602#603#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UrlResource.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/UrlResource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="62" column="48" lean-forward="false" selection-start-line="62" selection-start-column="48" selection-end-line="62" selection-end-column="48" />
+            <state relative-caret-position="1234">
+              <caret line="96" column="38" lean-forward="false" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -131,18 +62,96 @@
       <file leaf-file-name="Response.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/Response.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+            <state relative-caret-position="-32">
+              <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+              <folding>
+                <element signature="e#320#321#0" expanded="true" />
+                <element signature="e#349#350#0" expanded="true" />
+                <element signature="e#375#376#0" expanded="true" />
+                <element signature="e#402#403#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/util/HttpClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Assignment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/task/Assignment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataResource.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/DataResource.java">
+      <file leaf-file-name="JsonConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/util/JsonConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="208">
+              <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScheduleServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/ScheduleServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="30" column="45" lean-forward="false" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MasterConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/MasterConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#705#706#0" expanded="true" />
+                <element signature="e#735#736#0" expanded="true" />
+                <element signature="e#763#764#0" expanded="true" />
+                <element signature="e#790#791#0" expanded="true" />
+                <element signature="e#819#820#0" expanded="true" />
+                <element signature="e#851#852#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseConnection.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/DatabaseConnection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+              <folding>
+                <element signature="e#576#577#0" expanded="true" />
+                <element signature="e#603#604#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UrlResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/UrlResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -179,8 +188,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/sourcing/src/main/java/com/hehehey/ghost/server/SourceServer.java" />
-        <option value="$PROJECT_DIR$/sourcing/src/main/java/com/hehehey/ghost/SourceServer.java" />
         <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/SourceServer.java" />
         <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/worker/ScheduleWorker.java" />
         <option value="$PROJECT_DIR$/schedule/pom.xml" />
@@ -217,19 +224,21 @@
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/task/SourcingResult.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/task/TaskSubmission.java" />
         <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/Task.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/util/HttpClient.java" />
-        <option value="$PROJECT_DIR$/search/src/main/java/com/hehehey/ghost/worker/SingleThreadSearchWorker.java" />
-        <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/ScheduleServer.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/task/TaskResult.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/task/PageData.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/Response.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/task/TaskProgress.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/frontend/TaskProgress.java" />
-        <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java" />
         <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/UrlResource.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/storage/DatabaseConnection.java" />
         <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/DataResource.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/content/RegexContent.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/Response.java" />
+        <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java" />
+        <option value="$PROJECT_DIR$/search/src/main/java/com/hehehey/ghost/worker/SingleThreadSearchWorker.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/util/HttpClient.java" />
         <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/RedisConnection.java" />
+        <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/ScheduleServer.java" />
+        <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/MasterConfig.java" />
       </list>
     </option>
   </component>
@@ -637,40 +646,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ghost" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ghost" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ghost" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1543,7 +1518,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1491376383799</updated>
-      <workItem from="1491376385623" duration="23598000" />
+      <workItem from="1491376385623" duration="28079000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix #1.">
       <created>1491384618617</created>
@@ -1566,11 +1541,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491449363391</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Api update.">
+      <created>1491529859865</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1491529859865</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23598000" />
+    <option name="totallyTimeSpent" value="28079000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1592,6 +1574,7 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36877525" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1627,7 +1610,8 @@
     <MESSAGE value="Bug fix #1." />
     <MESSAGE value="HttpClient update, structure clean up, and bug fix." />
     <MESSAGE value="Api cleanup." />
-    <option name="LAST_COMMIT_MESSAGE" value="Api cleanup." />
+    <MESSAGE value="Api update." />
+    <option name="LAST_COMMIT_MESSAGE" value="Api update." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1696,29 +1680,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/content/RegexContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/java/storage/CsvFileStorage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="20" column="5" lean-forward="false" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/util/JsonConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1805,19 +1771,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/task/Assignment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="e#373#374#0" expanded="true" />
-            <element signature="e#398#399#0" expanded="true" />
-            <element signature="e#432#433#0" expanded="true" />
-            <element signature="e#460#461#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/sourcing/SearchAssignment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -1847,31 +1800,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/util/HttpClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="27" column="10" lean-forward="false" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/search/src/main/java/com/hehehey/ghost/source/SearchSource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="848">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/ScheduleServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="23" column="88" lean-forward="false" selection-start-line="23" selection-start-column="88" selection-end-line="23" selection-end-column="88" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1890,57 +1823,6 @@
           <folding>
             <element signature="e#440#441#0" expanded="true" />
             <element signature="e#465#466#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/search/src/main/java/com/hehehey/ghost/worker/SingleThreadSearchWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="95" column="0" lean-forward="true" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/Response.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/frontend/QueryResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="49" column="5" lean-forward="false" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/storage/DatabaseConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="25" column="36" lean-forward="false" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
-          <folding>
-            <element signature="e#309#310#0" expanded="true" />
-            <element signature="e#333#334#0" expanded="true" />
-            <element signature="e#465#466#0" expanded="true" />
-            <element signature="e#492#493#0" expanded="true" />
-            <element signature="e#575#576#0" expanded="true" />
-            <element signature="e#602#603#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1965,16 +1847,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/DataResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/frontend/UserRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1983,32 +1855,160 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/UrlResource.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/Jedis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="62" column="48" lean-forward="false" selection-start-line="62" selection-start-column="48" selection-end-line="62" selection-end-column="48" />
+        <state relative-caret-position="238">
+          <caret line="149" column="16" lean-forward="false" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/DataResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/Jedis.java">
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/frontend/QueryResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="1067" column="16" lean-forward="false" selection-start-line="1067" selection-start-column="16" selection-end-line="1067" selection-end-column="16" />
+        <state relative-caret-position="208">
+          <caret line="13" column="19" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_25/src.zip!/java/net/URI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="636">
+          <caret line="586" column="11" lean-forward="false" selection-start-line="586" selection-start-column="11" selection-end-line="586" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/content/RegexContent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="43" column="32" lean-forward="false" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="65" column="89" lean-forward="false" selection-start-line="65" selection-start-column="89" selection-end-line="65" selection-end-column="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/Response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-32">
+          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding>
+            <element signature="e#320#321#0" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
+            <element signature="e#375#376#0" expanded="true" />
+            <element signature="e#402#403#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/UrlResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/util/HttpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/task/Assignment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/util/JsonConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search/src/main/java/com/hehehey/ghost/worker/SingleThreadSearchWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1234">
+          <caret line="96" column="38" lean-forward="false" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/RedisConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="101" column="38" lean-forward="false" selection-start-line="101" selection-start-column="38" selection-end-line="101" selection-end-column="38" />
+        <state relative-caret-position="294">
+          <caret line="36" column="90" lean-forward="false" selection-start-line="36" selection-start-column="90" selection-end-line="36" selection-end-column="90" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4020#4021#0" expanded="true" />
-            <element signature="e#4044#4045#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/ScheduleServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="30" column="45" lean-forward="false" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/MasterConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#705#706#0" expanded="true" />
+            <element signature="e#735#736#0" expanded="true" />
+            <element signature="e#763#764#0" expanded="true" />
+            <element signature="e#790#791#0" expanded="true" />
+            <element signature="e#819#820#0" expanded="true" />
+            <element signature="e#851#852#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/DatabaseConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding>
+            <element signature="e#576#577#0" expanded="true" />
+            <element signature="e#603#604#0" expanded="true" />
           </folding>
         </state>
       </provider>

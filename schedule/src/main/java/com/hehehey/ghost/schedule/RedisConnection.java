@@ -6,6 +6,8 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,16 +18,24 @@ import java.util.List;
  */
 public class RedisConnection {
 
-    private static final JedisPool pool = new JedisPool(new JedisPoolConfig(), "qc.hehehey.com");
+    private static JedisPool pool = null;
 
     private static final String SET_ALL_TASK = "tasks.set";
     private static final String LIST_ALL_TASK = "tasks.queue";
     private static final String TASK_PREFIX = "task:";
 
     private static final String SET_URL_SUFFIX = ":set";
-    private static final String LIST_URL_SUFFIX = ":queue";
+    private static final String LIST_URL_MID = ":queue:";
+    private static final String COUNT_URL_SUFFIX = ":count";
     private static final String LIST_WORD_SUFFIX = ":words";
     private static final String LIST_SEED_URL_SUFFIX = ":seeds";
+
+    public static void newPool() {
+        if (pool != null)
+            pool.close();
+
+        pool = new JedisPool(new JedisPoolConfig(), MasterConfig.INSTANCE.getRedisHost());
+    }
 
     /**
      * Add task to redis task list.
@@ -59,7 +69,7 @@ public class RedisConnection {
         }
     }
 
-    public void addUrls(String id, String[] urls) {
+    public void addUrls(String id, String[] urls) throws URISyntaxException {
         try (Jedis jedis = pool.getResource()) {
             if (!jedis.sismember(SET_ALL_TASK, id)) {
                 jedis.sadd(SET_ALL_TASK, id);
@@ -68,10 +78,17 @@ public class RedisConnection {
 
             for (String url: urls) {
                 Boolean isMember = jedis.sismember(TASK_PREFIX + id + SET_URL_SUFFIX, url);
-                if (!isMember) {
-                    jedis.sadd(TASK_PREFIX + id + SET_URL_SUFFIX, url);
-                    jedis.lpush(TASK_PREFIX + id + LIST_URL_SUFFIX, url);
-                }
+                if (isMember)
+                    continue;
+
+                URI uri = new URI(url);
+                String host = uri.getHost();
+                if (host == null || host.contentEquals(""))
+                    continue;
+
+                jedis.incr(TASK_PREFIX + id + COUNT_URL_SUFFIX);
+                jedis.sadd(TASK_PREFIX + id + SET_URL_SUFFIX, url);
+                jedis.lpush(TASK_PREFIX + id + LIST_URL_MID + host, url);
             }
         }
     }
@@ -80,7 +97,8 @@ public class RedisConnection {
         try (Jedis jedis = pool.getResource()) {
             String task = jedis.rpop(LIST_ALL_TASK);
             while (task != null) {
-                if (jedis.llen(TASK_PREFIX + task + LIST_URL_SUFFIX) > 0) {
+                int count = Integer.parseInt(jedis.get(TASK_PREFIX + task + COUNT_URL_SUFFIX));
+                if (count > 0) {
                     jedis.lpush(LIST_ALL_TASK, task);
                     break;
                 } else {
@@ -99,7 +117,8 @@ public class RedisConnection {
         List<String> urls = new ArrayList<>();
         try (Jedis jedis = pool.getResource()) {
             for (int i = 0; i < size; i++) {
-                String item = jedis.rpop(TASK_PREFIX + id + LIST_URL_SUFFIX);
+                String item = jedis.rpop(TASK_PREFIX + id + LIST_URL_MID + name);
+                jedis.decr(TASK_PREFIX + id + COUNT_URL_SUFFIX);
                 if (item == null)
                     break;
                 else
@@ -111,6 +130,42 @@ public class RedisConnection {
     }
 
     public int count(String id) {
-        return 0;
+        int count;
+        try (Jedis jedis = pool.getResource()) {
+            count = Integer.parseInt(jedis.get(TASK_PREFIX + id + COUNT_URL_SUFFIX));
+        }
+
+        return count;
+    }
+
+    public String[] getSource(String id, UserRequest.SourceType type, int size) throws Exception {
+        List<String> source = new ArrayList<>();
+
+        try (Jedis jedis = pool.getResource()) {
+            switch (type) {
+                case search:
+                    for (int i = 0; i < size; i++) {
+                        String item = jedis.rpop(TASK_PREFIX + id + LIST_WORD_SUFFIX);
+                        if (item == null)
+                            break;
+                        else
+                            source.add(item);
+                    }
+                    break;
+                case seedUrl:
+                    for (int i = 0; i < size; i++) {
+                        String item = jedis.rpop(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX);
+                        if (item == null)
+                            break;
+                        else
+                            source.add(item);
+                    }
+                    break;
+                default:
+                    throw new Exception("Unsupported source type: " + type);
+            }
+        }
+
+        return source.toArray(new String[0]);
     }
 }

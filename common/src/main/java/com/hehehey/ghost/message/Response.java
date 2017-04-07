@@ -14,6 +14,14 @@ public class Response<T> {
         this.data = data;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public T getData() {
+        return data;
+    }
+
     public enum Status {
         ok,
         unsupported,

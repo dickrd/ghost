@@ -3,7 +3,7 @@ package com.hehehey.ghost.resource;
 import com.google.gson.Gson;
 import com.hehehey.ghost.message.Response;
 import com.hehehey.ghost.message.task.PageData;
-import com.hehehey.ghost.storage.DatabaseConnection;
+import com.hehehey.ghost.schedule.DatabaseConnection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
