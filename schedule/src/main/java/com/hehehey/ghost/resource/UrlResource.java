@@ -1,7 +1,9 @@
 package com.hehehey.ghost.resource;
 
 import com.google.gson.Gson;
+import com.hehehey.ghost.message.Response;
 import com.hehehey.ghost.message.task.Assignment;
+import com.hehehey.ghost.message.task.SourcingResult;
 import com.hehehey.ghost.schedule.RedisConnection;
 
 import javax.ws.rs.*;
@@ -18,6 +20,29 @@ public class UrlResource {
     private RedisConnection redisConnection = new RedisConnection();
 
     /**
+     * Generate a new task.
+     * @param jsonString Task request detail.
+     * @return Task status.
+     */
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String addUrl(String jsonString) {
+        Response<String> response;
+        try {
+            SourcingResult sourcingResult = gson.fromJson(jsonString, SourcingResult.class);
+            String id = sourcingResult.getId();
+            String[] urls = sourcingResult.getUrls();
+            redisConnection.addUrls(id, urls);
+            response = new Response<>(Response.Status.ok, "");
+        } catch (Exception e) {
+            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+        }
+
+        return gson.toJson(response);
+    }
+
+    /**
      * Get urls matching the given name.
      * @param size Max size requested.
      * @param id   Task id. A random one if not provided.
@@ -31,11 +56,16 @@ public class UrlResource {
     public String requestTask(@DefaultValue("10") @QueryParam("size") int size,
                               @DefaultValue("") @QueryParam("id") String id,
                               @PathParam("name") String name) {
-        if (id.contentEquals(""))
-            id = redisConnection.getTask();
+        Response response;
+        try {
+            if (id.contentEquals(""))
+                id = redisConnection.getTask();
+            String[] urls = redisConnection.getUrls(id, name, size);
+            response = new Response<>(Response.Status.ok, new Assignment(id, urls));
+        } catch (Exception e) {
+            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+        }
 
-        String[] urls = redisConnection.getUrls(id, name, size);
-
-        return gson.toJson(new Assignment(id, urls));
+        return gson.toJson(response);
     }
 }

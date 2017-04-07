@@ -1,15 +1,14 @@
 package com.hehehey.ghost.resource;
 
 import com.google.gson.Gson;
-import com.hehehey.ghost.message.frontend.QueryResponse;
+import com.hehehey.ghost.message.Response;
+import com.hehehey.ghost.message.frontend.TaskProgress;
 import com.hehehey.ghost.message.frontend.UserRequest;
-import com.hehehey.ghost.message.task.TaskProgress;
 import com.hehehey.ghost.schedule.RedisConnection;
 import com.hehehey.ghost.storage.DatabaseConnection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.HashMap;
 
 /**
  * Created by Dick Zhou on 3/30/2017.
@@ -31,38 +30,49 @@ public class TaskResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String newTask(String jsonString) {
-        TaskProgress taskProgress;
-        String id = "";
+        Response<String> response;
         try {
             UserRequest userRequest = gson.fromJson(jsonString, UserRequest.class);
             switch (userRequest.getType()) {
                 case search:
-                    id = redisConnection.addTask(UserRequest.SourceType.search, userRequest.getKeywords());
-                    taskProgress = new TaskProgress(id, TaskProgress.Status.ok, 0);
+                    String id = redisConnection.addTask(UserRequest.SourceType.search, userRequest.getKeywords());
+                    response = new Response<>(Response.Status.ok, id);
                     break;
                 default:
-                    taskProgress = new TaskProgress(id, TaskProgress.Status.unsupported, 0);
+                    response = new Response<>(Response.Status.unsupported, "");
                     break;
             }
         } catch (Exception e) {
-            taskProgress = new TaskProgress(id, TaskProgress.Status.error, 0);
-            taskProgress.setDetail(e.getLocalizedMessage());
+            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
         }
 
-        return gson.toJson(taskProgress);
+        return gson.toJson(response);
     }
 
     /**
-     * Get current results of the task, including data.
+     * Get current results status of the task, not including data.
      * @param id The task.
-     * @return Task results.
+     * @return Task status.
      */
     @GET
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String query(@PathParam("id") String id) {
-        HashMap<String, String>[] data = databaseConnection.get(id);
-        return gson.toJson(new QueryResponse(id, data));
+        Response response;
+
+        try {
+            int urlCount = redisConnection.count(id);
+            int dataCount = databaseConnection.count(id);
+            TaskProgress progress = new TaskProgress();
+            progress.setId(id);
+            progress.setDataCount(dataCount);
+            progress.setRemainingUrlCount(urlCount);
+            response = new Response<>(Response.Status.ok, progress);
+        } catch (Exception e) {
+            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+        }
+
+        return gson.toJson(response);
     }
 }
