@@ -1,6 +1,7 @@
 package com.hehehey.ghost.worker;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.hehehey.ghost.message.Response;
 import com.hehehey.ghost.message.task.Assignment;
 import com.hehehey.ghost.message.task.SourcingResult;
@@ -36,7 +37,7 @@ public class SingleThreadSearchWorker extends Thread {
     private final SearchSource searchSource;
 
     public static void main(String[] args) throws IOException {
-        WorkerConfig config = new JsonConfig<WorkerConfig>(configPath).read();
+        WorkerConfig config = new JsonConfig<WorkerConfig>(configPath).read(new TypeToken<WorkerConfig>(){}.getType());
         SingleThreadSearchWorker singleThreadSearchWorker = new SingleThreadSearchWorker(config);
         singleThreadSearchWorker.start();
     }
