@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.hehehey.ghost.message.Response;
 import com.hehehey.ghost.message.frontend.TaskProgress;
 import com.hehehey.ghost.message.frontend.UserRequest;
+import com.hehehey.ghost.message.task.Assignment;
 import com.hehehey.ghost.schedule.RedisConnection;
 import com.hehehey.ghost.schedule.DatabaseConnection;
 
@@ -43,16 +44,39 @@ public class TaskResource {
                     break;
             }
         } catch (Exception e) {
-            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+            response = new Response<>(Response.Status.error, e.toString());
         }
 
         return gson.toJson(response);
     }
 
     /**
-     * Get current results status of the task, not including data.
-     * @param id The task.
-     * @return Task status.
+     * Get task list.
+     * @return Task list.
+     */
+    @GET
+    @Path("/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getTasks(@DefaultValue("10") @QueryParam("size") int size,
+                           @DefaultValue("0") @QueryParam("page") int page) {
+        Response response;
+
+        try {
+            String[] tasks = databaseConnection.select(page, size);
+            response = new Response<>(Response.Status.ok, tasks);
+        } catch (Exception e) {
+            response = new Response<>(Response.Status.error, e.toString());
+        }
+
+        return gson.toJson(response);
+    }
+
+    /**
+     * Get keywords of the task.
+     * @param id   The task id. A random one if not provided.
+     * @param size Keywords array size.
+     * @return Keywords of the task.
      */
     @GET
     @Path("/words")
@@ -63,10 +87,16 @@ public class TaskResource {
         try {
             if (id.contentEquals(""))
                 id = redisConnection.getTask();
-            String[] words = redisConnection.getSource(id, UserRequest.SourceType.search, size);
-            response = new Response<>(Response.Status.ok, words);
+
+            if (id == null) {
+                response = new Response<>(Response.Status.wait, "No more tasks.");
+            }
+            else {
+                String[] words = redisConnection.getSource(id, UserRequest.SourceType.search, size);
+                response = new Response<>(Response.Status.ok, new Assignment(id, words));
+            }
         } catch (Exception e) {
-            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+            response = new Response<>(Response.Status.error, e.toString());
         }
 
         return gson.toJson(response);
@@ -93,7 +123,7 @@ public class TaskResource {
             progress.setRemainingUrlCount(urlCount);
             response = new Response<>(Response.Status.ok, progress);
         } catch (Exception e) {
-            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+            response = new Response<>(Response.Status.error, e.toString());
         }
 
         return gson.toJson(response);

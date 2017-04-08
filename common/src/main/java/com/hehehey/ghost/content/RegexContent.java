@@ -27,7 +27,7 @@ public class RegexContent {
             URI uri = new URI(baseUrl);
             host = uri.getHost();
         } catch (Exception e) {
-            logger.log(Level.INFO, "Base url failed, using empty string: " + baseUrl);
+            logger.log(Level.INFO, "Base url failed, using empty string: " + baseUrl, e);
         }
 
         this.baseUrl = host;

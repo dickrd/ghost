@@ -33,7 +33,6 @@ public class SearchSource {
     public String[] searchAll(String keyword) {
         List<String> results = new ArrayList<>();
         for (SearchEngine engine: engines) {
-            logger.log(Level.INFO, "Searching " + engine.name);
             try {
                 String aResult = searchResultOf(keyword, engine);
                 results.addAll(Arrays.asList(parseResult(aResult, engine)));
@@ -45,6 +44,7 @@ public class SearchSource {
     }
 
     private String searchResultOf(String keyword, SearchEngine engine) throws IOException{
+        logger.log(Level.INFO, "Searching " + engine.name + " for: " + keyword);
         String requestUrl = String.format(engine.queryUrl, URLEncoder.encode(keyword, engine.charset));
         return client.getAsString(requestUrl, engine.charset);
     }
@@ -55,7 +55,7 @@ public class SearchSource {
                 JsoupContent jsoupContent = new JsoupContent(htmlString, engine.queryUrl);
                 return jsoupContent.parseLinks(engine.method.getData());
             case regex:
-                RegexContent regexContent = new RegexContent(htmlString, engine.queryUrl);
+                RegexContent regexContent = new RegexContent(htmlString, String.format(engine.queryUrl, ""));
                 return regexContent.parseLinks(engine.method.getData(), engine.method.getStrip());
             default:
                 logger.log(Level.INFO, "No matching parse method: " + engine.method.getType());

@@ -25,6 +25,7 @@ public class Response<T> {
     public enum Status {
         ok,
         unsupported,
+        wait,
         error
     }
 }

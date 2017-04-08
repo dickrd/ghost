@@ -97,8 +97,15 @@ public class RedisConnection {
         try (Jedis jedis = pool.getResource()) {
             String task = jedis.rpop(LIST_ALL_TASK);
             while (task != null) {
-                int count = Integer.parseInt(jedis.get(TASK_PREFIX + task + COUNT_URL_SUFFIX));
-                if (count > 0) {
+                Long wordCount = jedis.llen(TASK_PREFIX + task + LIST_WORD_SUFFIX);
+                Long seedCount = jedis.llen(TASK_PREFIX + task + LIST_SEED_URL_SUFFIX);
+                Long urlCount = 0l;
+
+                String urlCountString = jedis.get(TASK_PREFIX + task + COUNT_URL_SUFFIX);
+                if (urlCountString != null)
+                    urlCount = Long.valueOf(urlCountString);
+
+                if (wordCount + seedCount + urlCount > 0) {
                     jedis.lpush(LIST_ALL_TASK, task);
                     break;
                 } else {

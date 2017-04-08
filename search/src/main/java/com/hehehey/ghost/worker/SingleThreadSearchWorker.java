@@ -23,7 +23,7 @@ public class SingleThreadSearchWorker extends Thread {
 
     private static final Logger logger = Logger.getLogger(SingleThreadSearchWorker.class.getName());
 
-    private static final String configPath = "source.json";
+    private static final String configPath = "search.json";
     private static final String pathGetWork = "/task/words";
     private static final String pathPutResult = "/url";
 
@@ -61,14 +61,15 @@ public class SingleThreadSearchWorker extends Thread {
         while (true) {
             while (workMap.isEmpty()) {
                 try {
-                    Response response = gson.fromJson(httpClient.getAsString(masterUrl + pathGetWork),
-                            Response.class);
+                    String stringResponse = httpClient.getAsString(masterUrl + pathGetWork);
+                    Response response = gson.fromJson(stringResponse, Response.class);
                     if (response.getStatus() != Response.Status.ok) {
-                        logger.log(Level.WARNING, "Master error." + response.getData());
+                        logger.log(Level.WARNING, "Master info: " + response.getData());
                         Thread.sleep(random.nextInt(maxSleepMs));
                         continue;
                     }
 
+                    response = gson.fromJson(stringResponse, new TypeToken<Response<Assignment>>(){}.getType());
                     Assignment assignment = (Assignment) response.getData();
                     if (assignment.getTasks() != null && assignment.getTasks().length > 0) {
                         workMap.put(assignment.getId(), assignment.getTasks());
@@ -78,7 +79,7 @@ public class SingleThreadSearchWorker extends Thread {
                         Thread.sleep(random.nextInt(maxSleepMs));
                     }
                 } catch (Exception e) {
-                    logger.log(Level.WARNING, "Error.", e);
+                    logger.log(Level.WARNING, "Task query failed.", e);
                 }
             }
 
