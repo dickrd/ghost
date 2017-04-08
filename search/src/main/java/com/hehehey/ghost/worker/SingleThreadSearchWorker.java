@@ -37,12 +37,12 @@ public class SingleThreadSearchWorker extends Thread {
     private final SearchSource searchSource;
 
     public static void main(String[] args) throws IOException {
-        WorkerConfig config = new JsonConfig<WorkerConfig>(configPath).read(new TypeToken<WorkerConfig>(){}.getType());
+        SearchWorkerConfig config = new JsonConfig<SearchWorkerConfig>(configPath).read(new TypeToken<SearchWorkerConfig>(){}.getType());
         SingleThreadSearchWorker singleThreadSearchWorker = new SingleThreadSearchWorker(config);
         singleThreadSearchWorker.start();
     }
 
-    private SingleThreadSearchWorker(WorkerConfig config) {
+    private SingleThreadSearchWorker(SearchWorkerConfig config) {
         this.searchSource = new SearchSource(config.engines);
         this.workMap = new HashMap<>();
         this.httpClient = new HttpClient();
@@ -104,7 +104,7 @@ public class SingleThreadSearchWorker extends Thread {
         }
     }
 
-    class WorkerConfig {
+    class SearchWorkerConfig {
         String masterUrl;
         int maxSleepMs;
         SearchSource.SearchEngine engines[];

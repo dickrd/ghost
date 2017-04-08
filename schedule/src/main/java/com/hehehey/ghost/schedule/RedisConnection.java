@@ -99,7 +99,7 @@ public class RedisConnection {
             while (task != null) {
                 Long wordCount = jedis.llen(TASK_PREFIX + task + LIST_WORD_SUFFIX);
                 Long seedCount = jedis.llen(TASK_PREFIX + task + LIST_SEED_URL_SUFFIX);
-                Long urlCount = 0l;
+                Long urlCount = 0L;
 
                 String urlCountString = jedis.get(TASK_PREFIX + task + COUNT_URL_SUFFIX);
                 if (urlCountString != null)
