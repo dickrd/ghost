@@ -12,7 +12,8 @@ import java.io.IOException;
 public class MasterConfig {
     private String baseUrl;
     private int port;
-    private String redisHost;
+    private String redisUri;
+    private String mongoUri;
 
     private static final String configPath = "ghost.json";
 
@@ -22,10 +23,11 @@ public class MasterConfig {
         INSTANCE = new JsonConfig<MasterConfig>(configPath).read(new TypeToken<MasterConfig>(){}.getType());
     }
 
-    public MasterConfig(String baseUrl, int port, String redisHost) {
+    public MasterConfig(String baseUrl, int port, String redisUri, String mongoUri) {
         this.baseUrl = baseUrl;
         this.port = port;
-        this.redisHost = redisHost;
+        this.redisUri = redisUri;
+        this.mongoUri = mongoUri;
     }
 
     public String getBaseUrl() {
@@ -36,7 +38,11 @@ public class MasterConfig {
         return port;
     }
 
-    String getRedisHost() {
-        return redisHost;
+    String getRedisUri() {
+        return redisUri;
+    }
+
+    String getMongoUri() {
+        return mongoUri;
     }
 }

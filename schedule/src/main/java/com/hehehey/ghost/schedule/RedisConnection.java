@@ -34,7 +34,7 @@ public class RedisConnection {
         if (pool != null)
             pool.close();
 
-        pool = new JedisPool(new JedisPoolConfig(), MasterConfig.INSTANCE.getRedisHost());
+        pool = new JedisPool(new JedisPoolConfig(), MasterConfig.INSTANCE.getRedisUri());
     }
 
     /**

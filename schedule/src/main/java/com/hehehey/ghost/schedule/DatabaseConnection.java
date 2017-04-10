@@ -1,6 +1,9 @@
 package com.hehehey.ghost.schedule;
 
 import com.hehehey.ghost.record.Task;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import org.bson.Document;
 
 import java.util.HashMap;
 
@@ -9,6 +12,11 @@ import java.util.HashMap;
  * Connect to database to store or retrieve result.
  */
 public class DatabaseConnection {
+
+    public DatabaseConnection() {
+        MongoClient mongoClient = new MongoClient(MasterConfig.INSTANCE.getMongoUri());
+        MongoCollection<Document> collection = mongoClient.getDatabase("").getCollection("");
+    }
 
     /**
      /**

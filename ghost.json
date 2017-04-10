@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://0.0.0.0/",
   "port": 666,
-  "redisHost": "qc.hehehey.com"
+  "redisUri": "qc.hehehey.com",
+  "mongoUri": "mongodb://qc.hehehey.com:27017"
 }
