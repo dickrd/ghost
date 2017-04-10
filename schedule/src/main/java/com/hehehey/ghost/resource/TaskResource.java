@@ -5,8 +5,9 @@ import com.hehehey.ghost.message.Response;
 import com.hehehey.ghost.message.frontend.TaskProgress;
 import com.hehehey.ghost.message.frontend.UserRequest;
 import com.hehehey.ghost.message.task.Assignment;
-import com.hehehey.ghost.schedule.RedisConnection;
+import com.hehehey.ghost.record.Task;
 import com.hehehey.ghost.schedule.DatabaseConnection;
+import com.hehehey.ghost.schedule.RedisConnection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -38,6 +39,7 @@ public class TaskResource {
                 case search:
                     String id = redisConnection.addTask(UserRequest.SourceType.search, userRequest.getKeywords());
                     response = new Response<>(Response.Status.ok, id);
+                    databaseConnection.insertData(id, userRequest.getTaskName());
                     break;
                 default:
                     response = new Response<>(Response.Status.unsupported, "");
@@ -55,7 +57,6 @@ public class TaskResource {
      * @return Task list.
      */
     @GET
-    @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String getTasks(@DefaultValue("10") @QueryParam("size") int size,
@@ -63,7 +64,7 @@ public class TaskResource {
         Response response;
 
         try {
-            String[] tasks = databaseConnection.select(page, size);
+            Task[] tasks = databaseConnection.selectTask(page, size);
             response = new Response<>(Response.Status.ok, tasks);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
@@ -116,7 +117,7 @@ public class TaskResource {
 
         try {
             int urlCount = redisConnection.count(id);
-            int dataCount = databaseConnection.count(id);
+            int dataCount = databaseConnection.countDataByTask(id);
             TaskProgress progress = new TaskProgress();
             progress.setId(id);
             progress.setDataCount(dataCount);

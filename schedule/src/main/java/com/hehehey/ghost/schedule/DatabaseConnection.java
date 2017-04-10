@@ -1,5 +1,7 @@
 package com.hehehey.ghost.schedule;
 
+import com.hehehey.ghost.record.Task;
+
 import java.util.HashMap;
 
 /**
@@ -10,12 +12,12 @@ public class DatabaseConnection {
 
     /**
      /**
-     * Get an array of task id.
+     * Get an array of task record.
      * @param page Page index.
-     * @param size Array size of task id.
+     * @param size Array size of task record.
      * @return Task id array.
      */
-    public String[] select(int page, int size) {
+    public Task[] selectTask(int page, int size) {
         return null;
     }
 
@@ -24,16 +26,24 @@ public class DatabaseConnection {
      * @param id Task id to count.
      * @return Data count.
      */
-    public int count(String id) {
+    public int countDataByTask(String id) {
         return 0;
     }
 
     /**
-     * Save the data to database. Will create a task record if not exist.
+     * Create a task record.
+     * @param id   Task id.
+     */
+    public void insertData(String id, String name) {
+
+    }
+
+    /**
+     * Save the data to database.
      * @param id   Task id of the data.
      * @param data Data contents.
      */
-    public void insert(String id, HashMap<String, String>[] data) {
+    public void insertData(String id, HashMap<String, String>[] data) {
 
     }
 
@@ -42,7 +52,7 @@ public class DatabaseConnection {
      * @param id The id of the data.
      * @return Data contents.
      */
-    public HashMap<String, String> select(String id) {
+    public HashMap<String, String> selectData(String id) {
         return null;
     }
 
@@ -53,7 +63,7 @@ public class DatabaseConnection {
      * @param size Data size per page.
      * @return Data array.
      */
-    public HashMap<String, String>[] selectRange(String id, int page, int size) {
+    public HashMap<String, String>[] selectDataByTask(String id, int page, int size) {
         return null;
     }
 }

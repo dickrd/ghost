@@ -1,13 +1,12 @@
 package com.hehehey.ghost;
 
+import com.hehehey.ghost.resource.TaskResource;
 import com.hehehey.ghost.resource.UrlResource;
 import com.hehehey.ghost.schedule.MasterConfig;
 import com.hehehey.ghost.schedule.RedisConnection;
-import com.hehehey.ghost.util.JsonConfig;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import com.hehehey.ghost.resource.TaskResource;
 
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;

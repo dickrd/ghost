@@ -1,7 +1,6 @@
 package com.hehehey.ghost.util;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileNotFoundException;

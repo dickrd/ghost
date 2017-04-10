@@ -6,12 +6,18 @@ package com.hehehey.ghost.message.frontend;
  */
 public class UserRequest {
 
+    private String taskName;
     private SourceType type;
     private String keywords[];
 
-    public UserRequest(SourceType type, String[] keywords) {
+    public UserRequest(String taskName, SourceType type, String[] keywords) {
+        this.taskName = taskName;
         this.type = type;
         this.keywords = keywords;
+    }
+
+    public String getTaskName() {
+        return taskName;
     }
 
     public String[] getKeywords() {

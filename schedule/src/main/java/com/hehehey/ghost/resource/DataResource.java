@@ -33,7 +33,7 @@ public class DataResource {
             PageData pageData = gson.fromJson(jsonString, PageData.class);
             String id = pageData.getId();
             HashMap<String, String>[] data = pageData.getData();
-            databaseConnection.insert(id, data);
+            databaseConnection.insertData(id, data);
             response = new Response<>(Response.Status.ok, "");
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.getLocalizedMessage());
@@ -55,7 +55,7 @@ public class DataResource {
         Response response;
 
         try {
-            HashMap<String, String> data = databaseConnection.select(id);
+            HashMap<String, String> data = databaseConnection.selectData(id);
             response = new Response<>(Response.Status.ok, data);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.getLocalizedMessage());
@@ -81,7 +81,7 @@ public class DataResource {
         Response response;
 
         try {
-            HashMap<String, String> data[] = databaseConnection.selectRange(id, page, size);
+            HashMap<String, String> data[] = databaseConnection.selectDataByTask(id, page, size);
             response = new Response<>(Response.Status.ok, data);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.getLocalizedMessage());
