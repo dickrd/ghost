@@ -11,6 +11,8 @@ import com.hehehey.ghost.schedule.RedisConnection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Dick Zhou on 3/30/2017.
@@ -18,6 +20,8 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("/task")
 public class TaskResource {
+
+    private static final Logger logger = Logger.getLogger(TaskResource.class.getName());
 
     private Gson gson = new Gson();
     private RedisConnection redisConnection = new RedisConnection();
@@ -38,8 +42,8 @@ public class TaskResource {
             switch (userRequest.getType()) {
                 case search:
                     String id = redisConnection.addTask(UserRequest.SourceType.search, userRequest.getKeywords());
+                    databaseConnection.insertTask(id, userRequest.getTaskName());
                     response = new Response<>(Response.Status.ok, id);
-                    databaseConnection.insertData(id, userRequest.getTaskName());
                     break;
                 default:
                     response = new Response<>(Response.Status.unsupported, "");
@@ -47,6 +51,7 @@ public class TaskResource {
             }
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
+            logger.log(Level.INFO, "", e);
         }
 
         return gson.toJson(response);
@@ -68,6 +73,7 @@ public class TaskResource {
             response = new Response<>(Response.Status.ok, tasks);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
+            logger.log(Level.INFO, "", e);
         }
 
         return gson.toJson(response);
@@ -98,6 +104,7 @@ public class TaskResource {
             }
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
+            logger.log(Level.INFO, "", e);
         }
 
         return gson.toJson(response);
@@ -125,6 +132,7 @@ public class TaskResource {
             response = new Response<>(Response.Status.ok, progress);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
+            logger.log(Level.INFO, "", e);
         }
 
         return gson.toJson(response);

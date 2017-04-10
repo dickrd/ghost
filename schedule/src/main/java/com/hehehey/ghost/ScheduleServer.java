@@ -11,6 +11,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +23,7 @@ public class ScheduleServer {
 
     private static final Logger logger = Logger.getLogger(ScheduleServer.class.getName());
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, URISyntaxException {
         MasterConfig.reload();
         logger.log(Level.INFO, "Configuration load.");
 

@@ -1,11 +1,19 @@
 package com.hehehey.ghost.schedule;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.hehehey.ghost.record.Task;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Dick Zhou on 3/30/2017.
@@ -13,9 +21,17 @@ import java.util.HashMap;
  */
 public class DatabaseConnection {
 
+    private static final String tableTask = "task";
+
+    private MongoDatabase database;
+    private Gson gson;
+
     public DatabaseConnection() {
-        MongoClient mongoClient = new MongoClient(MasterConfig.INSTANCE.getMongoUri());
-        MongoCollection<Document> collection = mongoClient.getDatabase("").getCollection("");
+        MongoClientURI mongoClientURI = new MongoClientURI(MasterConfig.INSTANCE.getMongoUri());
+        MongoClient mongoClient = new MongoClient(mongoClientURI);
+        database = mongoClient.getDatabase(mongoClientURI.getDatabase());
+
+        gson = new Gson();
     }
 
     /**
@@ -42,8 +58,10 @@ public class DatabaseConnection {
      * Create a task record.
      * @param id   Task id.
      */
-    public void insertData(String id, String name) {
-
+    public void insertTask(String id, String name) {
+        MongoCollection<Document> taskCollection = database.getCollection(tableTask);
+        Task task = new Task(name, id, System.currentTimeMillis());
+        taskCollection.insertOne(convertToDocument(task));
     }
 
     /**
@@ -52,7 +70,13 @@ public class DatabaseConnection {
      * @param data Data contents.
      */
     public void insertData(String id, HashMap<String, String>[] data) {
+        MongoCollection<Document> theCollection = database.getCollection(id);
 
+        ArrayList<Document> documents = new ArrayList<>();
+        for (HashMap<String, String> aData: data) {
+            documents.add(new Document(Collections.unmodifiableMap(aData)));
+        }
+        theCollection.insertMany(documents);
     }
 
     /**
@@ -72,6 +96,12 @@ public class DatabaseConnection {
      * @return Data array.
      */
     public HashMap<String, String>[] selectDataByTask(String id, int page, int size) {
+        MongoCursor<Document> iterator = database.getCollection(id).find().skip(page * size).iterator();
+
         return null;
+    }
+
+    private Document convertToDocument(Object o) {
+        return new Document(gson.fromJson(gson.toJson(o), new TypeToken<Map<String, Object>>(){}.getType()));
     }
 }

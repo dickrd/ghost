@@ -4,7 +4,6 @@ import com.hehehey.ghost.message.frontend.UserRequest;
 import com.hehehey.ghost.util.SecurityUtil;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -30,11 +29,11 @@ public class RedisConnection {
     private static final String LIST_WORD_SUFFIX = ":words";
     private static final String LIST_SEED_URL_SUFFIX = ":seeds";
 
-    public static void newPool() {
+    public static void newPool() throws URISyntaxException {
         if (pool != null)
             pool.close();
 
-        pool = new JedisPool(new JedisPoolConfig(), MasterConfig.INSTANCE.getRedisUri());
+        pool = new JedisPool(new URI(MasterConfig.INSTANCE.getRedisUri()));
     }
 
     /**
@@ -117,10 +116,7 @@ public class RedisConnection {
         }
     }
 
-    public String[] getUrls(String id, String name, int size) throws Exception {
-        if (id == null || id.contentEquals("") || name == null || name.contentEquals(""))
-            throw new Exception("No id or name: " + id + ", " + name);
-
+    public String[] getUrls(String id, String name, int size) {
         List<String> urls = new ArrayList<>();
         try (Jedis jedis = pool.getResource()) {
             for (int i = 0; i < size; i++) {

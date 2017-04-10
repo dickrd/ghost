@@ -8,6 +8,8 @@ import com.hehehey.ghost.schedule.RedisConnection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Dick Zhou on 4/6/2017.
@@ -15,6 +17,8 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("/url")
 public class UrlResource {
+
+    private static final Logger logger = Logger.getLogger(UrlResource.class.getName());
 
     private Gson gson = new Gson();
     private RedisConnection redisConnection = new RedisConnection();
@@ -36,7 +40,8 @@ public class UrlResource {
             redisConnection.addUrls(id, urls);
             response = new Response<>(Response.Status.ok, "");
         } catch (Exception e) {
-            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+            response = new Response<>(Response.Status.error, e.toString());
+            logger.log(Level.INFO, "", e);
         }
 
         return gson.toJson(response);
@@ -60,10 +65,20 @@ public class UrlResource {
         try {
             if (id.contentEquals(""))
                 id = redisConnection.getTask();
-            String[] urls = redisConnection.getUrls(id, name, size);
-            response = new Response<>(Response.Status.ok, new Assignment(id, urls));
+
+            if (id == null) {
+                response = new Response<>(Response.Status.wait, "No more tasks.");
+            } else {
+                String[] urls = redisConnection.getUrls(id, name, size);
+
+                if (urls.length > 0)
+                    response = new Response<>(Response.Status.ok, new Assignment(id, urls));
+                else
+                    response = new Response<>(Response.Status.wait, "No more urls for name: " + name);
+            }
         } catch (Exception e) {
-            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+            response = new Response<>(Response.Status.error, e.toString());
+            logger.log(Level.INFO, "", e);
         }
 
         return gson.toJson(response);

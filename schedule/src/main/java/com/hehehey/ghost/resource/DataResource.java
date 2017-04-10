@@ -8,6 +8,8 @@ import com.hehehey.ghost.schedule.DatabaseConnection;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Dick Zhou on 4/6/2017.
@@ -15,6 +17,8 @@ import java.util.HashMap;
  */
 @Path("/data")
 public class DataResource {
+
+    private static final Logger logger = Logger.getLogger(DataResource.class.getName());
 
     private Gson gson = new Gson();
     private DatabaseConnection databaseConnection = new DatabaseConnection();
@@ -36,7 +40,8 @@ public class DataResource {
             databaseConnection.insertData(id, data);
             response = new Response<>(Response.Status.ok, "");
         } catch (Exception e) {
-            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+            response = new Response<>(Response.Status.error, e.toString());
+            logger.log(Level.INFO, "", e);
         }
 
         return gson.toJson(response);
@@ -58,7 +63,8 @@ public class DataResource {
             HashMap<String, String> data = databaseConnection.selectData(id);
             response = new Response<>(Response.Status.ok, data);
         } catch (Exception e) {
-            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+            response = new Response<>(Response.Status.error, e.toString());
+            logger.log(Level.INFO, "", e);
         }
 
         return gson.toJson(response);
@@ -84,7 +90,8 @@ public class DataResource {
             HashMap<String, String> data[] = databaseConnection.selectDataByTask(id, page, size);
             response = new Response<>(Response.Status.ok, data);
         } catch (Exception e) {
-            response = new Response<>(Response.Status.error, e.getLocalizedMessage());
+            response = new Response<>(Response.Status.error, e.toString());
+            logger.log(Level.INFO, "", e);
         }
 
         return gson.toJson(response);
