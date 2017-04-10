@@ -65,7 +65,13 @@ public class SingleThreadSearchWorker extends Thread {
                     Response response = gson.fromJson(stringResponse, Response.class);
                     if (response.getStatus() != Response.Status.ok) {
                         logger.log(Level.WARNING, "Master info: " + response.getData());
-                        Thread.sleep(random.nextInt(maxSleepMs));
+
+                        int waitMs;
+                        if (response.getStatus() == Response.Status.wait)
+                            waitMs = random.nextInt(maxSleepMs - 3000) + 3000;
+                        else
+                            waitMs = random.nextInt(maxSleepMs / 2);
+                        Thread.sleep(waitMs);
                         continue;
                     }
 
@@ -75,7 +81,7 @@ public class SingleThreadSearchWorker extends Thread {
                         workMap.put(assignment.getId(), assignment.getTasks());
                     }
                     else {
-                        logger.log(Level.INFO, "Waiting for new task.");
+                        logger.log(Level.INFO, "Empty task.");
                         Thread.sleep(random.nextInt(maxSleepMs));
                     }
                 } catch (Exception e) {
