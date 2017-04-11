@@ -24,9 +24,9 @@ public class UrlResource {
     private RedisConnection redisConnection = new RedisConnection();
 
     /**
-     * Generate a new task.
-     * @param jsonString Task request detail.
-     * @return Task status.
+     * Fill task with urls.
+     * @param jsonString Url detail.
+     * @return Fill status.
      */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)

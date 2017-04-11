@@ -52,8 +52,10 @@ public class RedisConnection {
                 jedis.sadd(SET_ALL_TASK, id);
                 jedis.lpush(LIST_ALL_TASK, id);
 
-                jedis.lpush(TASK_PREFIX + id + LIST_WORD_SUFFIX, words);
-                jedis.lpush(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX, seeds);
+                if (words != null && words.length > 0)
+                    jedis.lpush(TASK_PREFIX + id + LIST_WORD_SUFFIX, words);
+                if (seeds != null && seeds.length > 0)
+                    jedis.lpush(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX, seeds);
             }
             return id;
         }

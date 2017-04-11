@@ -61,6 +61,8 @@ public class SingleThreadSearchWorker extends Thread {
         while (true) {
             while (workMap.isEmpty()) {
                 try {
+                    Thread.sleep(random.nextInt(maxSleepMs));
+                    
                     String stringResponse = httpClient.getAsString(masterUrl + pathGetWork);
                     Response response = gson.fromJson(stringResponse, Response.class);
                     if (response.getStatus() != Response.Status.ok) {
@@ -82,7 +84,6 @@ public class SingleThreadSearchWorker extends Thread {
                     }
                     else {
                         logger.log(Level.INFO, "Empty task.");
-                        Thread.sleep(random.nextInt(maxSleepMs));
                     }
                 } catch (Exception e) {
                     logger.log(Level.WARNING, "Task query failed.", e);

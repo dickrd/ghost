@@ -1,5 +1,6 @@
 package com.hehehey.ghost;
 
+import com.hehehey.ghost.resource.DataResource;
 import com.hehehey.ghost.resource.TaskResource;
 import com.hehehey.ghost.resource.UrlResource;
 import com.hehehey.ghost.schedule.DatabaseConnection;
@@ -35,7 +36,7 @@ public class ScheduleServer {
         URI baseUri = UriBuilder.fromUri(MasterConfig.INSTANCE.getBaseUrl())
                 .port(MasterConfig.INSTANCE.getPort())
                 .build();
-        ResourceConfig config = new ResourceConfig(TaskResource.class, UrlResource.class);
+        ResourceConfig config = new ResourceConfig(TaskResource.class, UrlResource.class, DataResource.class);
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(baseUri, config);
 
         //noinspection InfiniteLoopStatement

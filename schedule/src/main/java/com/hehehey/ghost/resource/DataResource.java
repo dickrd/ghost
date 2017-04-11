@@ -64,7 +64,10 @@ public class DataResource {
 
         try {
             PageData data[] = databaseConnection.selectData(id, page, size);
-            response = new Response<>(Response.Status.ok, data);
+            if (data.length > 0)
+                response = new Response<>(Response.Status.ok, data);
+            else
+                response = new Response<>(Response.Status.wait, "Error task id or no data yet.");
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
             logger.log(Level.INFO, "", e);
