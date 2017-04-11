@@ -110,12 +110,13 @@ public class TaskResource {
         Response response;
 
         try {
-            long urlCount = redisConnection.count(id);
+            Long[] redisCount = redisConnection.count(id);
             long dataCount = databaseConnection.countData(id);
             TaskProgress progress = new TaskProgress();
             progress.setId(id);
             progress.setDataCount(dataCount);
-            progress.setRemainingUrlCount(urlCount);
+            progress.setRemainingUrlCount(redisCount[0]);
+            progress.setRemainingSourceCount(redisCount[1]);
             response = new Response<>(Response.Status.ok, progress);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());

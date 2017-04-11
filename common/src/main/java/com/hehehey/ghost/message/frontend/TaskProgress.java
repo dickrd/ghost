@@ -17,6 +17,11 @@ public class TaskProgress {
     private long remainingUrlCount;
 
     /**
+     * 剩余的关键词和种子URL总数
+     */
+    private long remainingSourceCount;
+
+    /**
      * 此次任务的当前数据量
      */
     private long dataCount;
@@ -35,6 +40,14 @@ public class TaskProgress {
 
     public void setRemainingUrlCount(long remainingUrlCount) {
         this.remainingUrlCount = remainingUrlCount;
+    }
+
+    public long getRemainingSourceCount() {
+        return remainingSourceCount;
+    }
+
+    public void setRemainingSourceCount(long remainingSourceCount) {
+        this.remainingSourceCount = remainingSourceCount;
     }
 
     public long getDataCount() {

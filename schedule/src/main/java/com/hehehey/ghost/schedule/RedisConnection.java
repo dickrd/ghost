@@ -131,13 +131,23 @@ public class RedisConnection {
         return urls.toArray(new String[0]);
     }
 
-    public long count(String id) {
-        long count;
+    /**
+     * Count a task's url and keywords.
+     * @param id Task to count.
+     * @return An array which the first element is url count and the second element is source count.
+     */
+    public Long[] count(String id) {
+        ArrayList<Long> longs = new ArrayList<>();
         try (Jedis jedis = pool.getResource()) {
-            count = Long.valueOf(jedis.get(TASK_PREFIX + id + COUNT_URL_SUFFIX));
+            longs.add(Long.valueOf(jedis.get(TASK_PREFIX + id + COUNT_URL_SUFFIX)));
+
+            Long wordCount = jedis.llen(TASK_PREFIX + id + LIST_WORD_SUFFIX);
+            Long seedCount = jedis.llen(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX);
+
+            longs.add(wordCount + seedCount);
         }
 
-        return count;
+        return longs.toArray(new Long[0]);
     }
 
     public String[] getWords(String id, int size) {
