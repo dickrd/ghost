@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="558e0e34-579f-42e2-883c-f3b9c80d9ea9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/DataResource.java" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/DataResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/UrlResource.java" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/UrlResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/DatabaseConnection.java" afterPath="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/schedule/DatabaseConnection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -35,7 +32,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="336">
               <caret line="68" column="88" lean-forward="false" selection-start-line="68" selection-start-column="88" selection-end-line="68" selection-end-column="88" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <marker date="1491891526408" expanded="true" signature="692:891" ph="/**...*/" />
+                <marker date="1491891526408" expanded="true" signature="1080:1523" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -46,7 +47,14 @@
             <state relative-caret-position="130">
               <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#864#865#0" expanded="false" />
+                <element signature="e#894#895#0" expanded="false" />
+                <element signature="e#922#923#0" expanded="false" />
+                <element signature="e#949#950#0" expanded="false" />
+                <element signature="e#977#978#0" expanded="false" />
+                <element signature="e#1008#1009#0" expanded="false" />
+                <element signature="e#1036#1037#0" expanded="false" />
+                <element signature="e#1067#1068#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -62,12 +70,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskResource.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TaskResource.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
-              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="32">
+                <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -78,8 +99,8 @@
             <state relative-caret-position="-240">
               <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding>
-                <element signature="e#4107#4108#0" expanded="true" />
-                <element signature="e#4164#4165#0" expanded="true" />
+                <element signature="e#1376#1377#0" expanded="false" />
+                <element signature="e#1409#1410#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -90,7 +111,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="96">
               <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-              <folding />
+              <folding>
+                <marker date="1491880292570" expanded="true" signature="147:175" ph="/**...*/" />
+                <marker date="1491880292570" expanded="true" signature="206:229" ph="/**...*/" />
+                <marker date="1491880292570" expanded="true" signature="258:283" ph="/**...*/" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,8 +126,10 @@
             <state relative-caret-position="128">
               <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
               <folding>
-                <element signature="e#452#453#0" expanded="true" />
-                <element signature="e#480#481#0" expanded="true" />
+                <element signature="e#391#392#0" expanded="false" />
+                <element signature="e#418#419#0" expanded="false" />
+                <element signature="e#514#515#0" expanded="false" />
+                <element signature="e#542#543#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -114,7 +141,9 @@
             <state relative-caret-position="317">
               <caret line="68" column="77" lean-forward="false" selection-start-line="68" selection-start-column="77" selection-end-line="68" selection-end-column="77" />
               <folding>
+                <element signature="imports" expanded="false" />
                 <marker date="1491891397922" expanded="true" signature="44:321" ph="..." />
+                <marker date="1491891397922" expanded="true" signature="748:852" ph="/**...*/" />
               </folding>
             </state>
           </provider>
@@ -151,7 +180,6 @@
       <list>
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/TaskStatus.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/TaskProgress.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/TaskRequest.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/storage/DatabaseConnection.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/hehehey/ghost/message/QueryResponse.java" />
@@ -200,6 +228,7 @@
         <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/UrlResource.java" />
         <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java" />
         <option value="$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/DataResource.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -1678,7 +1707,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1491376383799</updated>
-      <workItem from="1491376385623" duration="49584000" />
+      <workItem from="1491376385623" duration="49927000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix #1.">
       <created>1491384618617</created>
@@ -1771,11 +1800,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491880357619</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Bug fix.">
+      <created>1491891817840</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1491891817840</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49584000" />
+    <option name="totallyTimeSpent" value="49927000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1788,7 +1824,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1809,7 +1845,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1894,17 +1930,6 @@
             <element signature="e#16192#16193#0" expanded="false" />
             <element signature="e#16227#16228#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="16">
-            <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -2224,8 +2249,10 @@
         <state relative-caret-position="128">
           <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
-            <element signature="e#452#453#0" expanded="true" />
-            <element signature="e#480#481#0" expanded="true" />
+            <element signature="e#391#392#0" expanded="false" />
+            <element signature="e#418#419#0" expanded="false" />
+            <element signature="e#514#515#0" expanded="false" />
+            <element signature="e#542#543#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2235,7 +2262,14 @@
         <state relative-caret-position="130">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#864#865#0" expanded="false" />
+            <element signature="e#894#895#0" expanded="false" />
+            <element signature="e#922#923#0" expanded="false" />
+            <element signature="e#949#950#0" expanded="false" />
+            <element signature="e#977#978#0" expanded="false" />
+            <element signature="e#1008#1009#0" expanded="false" />
+            <element signature="e#1036#1037#0" expanded="false" />
+            <element signature="e#1067#1068#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2276,7 +2310,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-          <folding />
+          <folding>
+            <marker date="1491880292570" expanded="true" signature="147:175" ph="/**...*/" />
+            <marker date="1491880292570" expanded="true" signature="206:229" ph="/**...*/" />
+            <marker date="1491880292570" expanded="true" signature="258:283" ph="/**...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2285,8 +2323,8 @@
         <state relative-caret-position="-240">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
-            <element signature="e#4107#4108#0" expanded="true" />
-            <element signature="e#4164#4165#0" expanded="true" />
+            <element signature="e#1376#1377#0" expanded="false" />
+            <element signature="e#1409#1410#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2296,7 +2334,9 @@
         <state relative-caret-position="317">
           <caret line="68" column="77" lean-forward="false" selection-start-line="68" selection-start-column="77" selection-end-line="68" selection-end-column="77" />
           <folding>
+            <element signature="imports" expanded="false" />
             <marker date="1491891397922" expanded="true" signature="44:321" ph="..." />
+            <marker date="1491891397922" expanded="true" signature="748:852" ph="/**...*/" />
           </folding>
         </state>
       </provider>
@@ -2305,15 +2345,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="68" column="88" lean-forward="false" selection-start-line="68" selection-start-column="88" selection-end-line="68" selection-end-column="88" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <marker date="1491891526408" expanded="true" signature="692:891" ph="/**...*/" />
+            <marker date="1491891526408" expanded="true" signature="1080:1523" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/schedule/src/main/java/com/hehehey/ghost/resource/TaskResource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
-          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="32">
+            <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
