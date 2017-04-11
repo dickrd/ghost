@@ -1,6 +1,6 @@
 package com.hehehey.ghost.schedule;
 
-import com.hehehey.ghost.util.SecurityUtil;
+import com.hehehey.ghost.util.StringTools;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -42,7 +42,7 @@ public class RedisConnection {
      * @throws Exception If the keywords and seed urls combination exists.
      */
     public String addTask(String[] seeds, String[] words) throws Exception{
-        String id = SecurityUtil.generateUniqueId();
+        String id = StringTools.generateUniqueId();
 
         try (Jedis jedis = pool.getResource()) {
             if (jedis.sismember(SET_ALL_TASK, id)) {

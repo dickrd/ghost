@@ -8,6 +8,7 @@ import com.hehehey.ghost.message.task.SourcingResult;
 import com.hehehey.ghost.source.SearchSource;
 import com.hehehey.ghost.util.HttpClient;
 import com.hehehey.ghost.util.JsonConfig;
+import com.hehehey.ghost.util.LongTools;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -59,24 +60,25 @@ public class SingleThreadSearchWorker extends Thread {
 
         //noinspection InfiniteLoopStatement
         while (true) {
+            long waitMs = 1;
             while (workMap.isEmpty()) {
                 try {
-                    Thread.sleep(random.nextInt(maxSleepMs));
+                    Thread.sleep(waitMs);
 
                     String stringResponse = httpClient.getAsString(masterUrl + pathGetWork);
                     Response response = gson.fromJson(stringResponse, Response.class);
                     if (response.getStatus() != Response.Status.ok) {
                         logger.log(Level.WARNING, "Master info: " + response.getData());
 
-                        int waitMs;
                         if (response.getStatus() == Response.Status.wait)
-                            waitMs = random.nextInt(maxSleepMs - 3000) + 3000;
+                            waitMs = LongTools.increase(waitMs, maxSleepMs);
                         else
-                            waitMs = random.nextInt(maxSleepMs / 2);
+                            waitMs = LongTools.notDecrease(waitMs, maxSleepMs);
                         Thread.sleep(waitMs);
                         continue;
                     }
 
+                    waitMs = 1;
                     response = gson.fromJson(stringResponse, new TypeToken<Response<Assignment>>(){}.getType());
                     Assignment assignment = (Assignment) response.getData();
                     if (assignment.getTasks() != null && assignment.getTasks().length > 0) {
@@ -87,6 +89,7 @@ public class SingleThreadSearchWorker extends Thread {
                     }
                 } catch (Exception e) {
                     logger.log(Level.WARNING, "Task query failed.", e);
+                    waitMs = LongTools.increase(waitMs, maxSleepMs);
                 }
             }
 
