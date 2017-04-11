@@ -41,6 +41,16 @@ public class DatabaseConnection {
     }
 
     /**
+     * Create a task record.
+     * @param id   Task id.
+     */
+    public void insertTask(String id, String name) {
+        MongoCollection<Document> taskCollection = database.getCollection(tableTask);
+        TaskData taskData = new TaskData(name, id, System.currentTimeMillis());
+        taskCollection.insertOne(toDocument(taskData));
+    }
+
+    /**
      /**
      * Get an array of task record.
      * @param page Page index.
@@ -55,6 +65,30 @@ public class DatabaseConnection {
             dataList.add(gson.fromJson(gson.toJson(iterator.next()), TaskData.class));
         }
         return dataList.toArray(new TaskData[0]);
+    }
+
+    /**
+     * Change the name of a task.
+     * @param id   Id of the task to change.
+     * @param name The name to change to.
+     */
+    public void updateTaskName(String id, String name) {
+        MongoCollection<Document> taskCollection = database.getCollection(tableTask);
+        taskCollection.updateOne(eq("id", id), set("name", name));
+    }
+
+    /**
+     * Save the data to database.
+     * @param id   Task id of the data.
+     * @param page Data contents.
+     */
+    public void insertData(String id, PageData page) throws Exception {
+        if (database.getCollection(tableTask).find(eq("id", id)).first() == null) {
+            throw new Exception("Task not exist.");
+        }
+        MongoCollection<Document> theCollection = database.getCollection(id);
+
+        theCollection.insertOne(toDocument(page));
     }
 
     /**
@@ -79,37 +113,11 @@ public class DatabaseConnection {
      * @param id Task id to count.
      * @return Data count.
      */
-    public long countDataByTask(String id) {
+    public long countData(String id) {
         return database.getCollection(id).count();
-    }
-
-    /**
-     * Create a task record.
-     * @param id   Task id.
-     */
-    public void insertTask(String id, String name) {
-        MongoCollection<Document> taskCollection = database.getCollection(tableTask);
-        TaskData taskData = new TaskData(name, id, System.currentTimeMillis());
-        taskCollection.insertOne(toDocument(taskData));
-    }
-
-    /**
-     * Save the data to database.
-     * @param id   Task id of the data.
-     * @param page Data contents.
-     */
-    public void insertData(String id, PageData page) {
-        MongoCollection<Document> theCollection = database.getCollection(id);
-
-        theCollection.insertOne(toDocument(page));
     }
 
     private Document toDocument(Object o) {
         return new Document(gson.fromJson(gson.toJson(o), new TypeToken<Map<String, Object>>(){}.getType()));
-    }
-
-    public void updateTaskName(String id, String name) {
-        MongoCollection<Document> taskCollection = database.getCollection(tableTask);
-        taskCollection.updateOne(eq("id", id), set("name", name));
     }
 }

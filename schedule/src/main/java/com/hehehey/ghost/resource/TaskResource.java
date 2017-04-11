@@ -108,7 +108,7 @@ public class TaskResource {
 
         try {
             long urlCount = redisConnection.count(id);
-            long dataCount = databaseConnection.countDataByTask(id);
+            long dataCount = databaseConnection.countData(id);
             TaskProgress progress = new TaskProgress();
             progress.setId(id);
             progress.setDataCount(dataCount);

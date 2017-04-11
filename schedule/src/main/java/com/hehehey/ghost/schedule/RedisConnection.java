@@ -7,7 +7,6 @@ import redis.clients.jedis.JedisPool;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,12 +37,12 @@ public class RedisConnection {
     /**
      * Add task to redis task list.
      * @param seeds Seed urls.
-     * @param words Either keywords for search type or seed urls for seeds type.
+     * @param words Keywords for search.
      * @return Generated task id.
-     * @throws Exception If the keywords or seed urls combination exists or type not supported.
+     * @throws Exception If the keywords and seed urls combination exists.
      */
     public String addTask(String[] seeds, String[] words) throws Exception{
-        String id = SecurityUtil.bytesToHex(SecurityUtil.md5((Arrays.toString(seeds) + Arrays.toString(words)).getBytes()));
+        String id = SecurityUtil.generateUniqueId();
 
         try (Jedis jedis = pool.getResource()) {
             if (jedis.sismember(SET_ALL_TASK, id)) {
