@@ -62,7 +62,7 @@ public class SingleThreadSearchWorker extends Thread {
             while (workMap.isEmpty()) {
                 try {
                     Thread.sleep(random.nextInt(maxSleepMs));
-                    
+
                     String stringResponse = httpClient.getAsString(masterUrl + pathGetWork);
                     Response response = gson.fromJson(stringResponse, Response.class);
                     if (response.getStatus() != Response.Status.ok) {

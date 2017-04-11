@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
+
 /**
  * Created by Dick Zhou on 3/30/2017.
  * Connect to database to store or retrieve result.
@@ -103,5 +106,10 @@ public class DatabaseConnection {
 
     private Document toDocument(Object o) {
         return new Document(gson.fromJson(gson.toJson(o), new TypeToken<Map<String, Object>>(){}.getType()));
+    }
+
+    public void updateTaskName(String id, String name) {
+        MongoCollection<Document> taskCollection = database.getCollection(tableTask);
+        taskCollection.updateOne(eq("id", id), set("name", name));
     }
 }

@@ -6,18 +6,18 @@ package com.hehehey.ghost.message.frontend;
  */
 public class UserRequest {
 
-    private String taskName;
+    private String name;
     private String seeds[];
     private String words[];
 
-    public UserRequest(String taskName, String[] seeds, String[] words) {
-        this.taskName = taskName;
+    public UserRequest(String name, String[] seeds, String[] words) {
+        this.name = name;
         this.seeds = seeds;
         this.words = words;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getName() {
+        return name;
     }
 
     public String[] getSeeds() {

@@ -43,21 +43,28 @@ public class RedisConnection {
      * @throws Exception If the keywords or seed urls combination exists or type not supported.
      */
     public String addTask(String[] seeds, String[] words) throws Exception{
+        String id = SecurityUtil.bytesToHex(SecurityUtil.md5((Arrays.toString(seeds) + Arrays.toString(words)).getBytes()));
+
         try (Jedis jedis = pool.getResource()) {
-            String id = SecurityUtil.bytesToHex(SecurityUtil.md5(Arrays.toString(words).getBytes()));
             if (jedis.sismember(SET_ALL_TASK, id)) {
                 throw new Exception("Task already exist.");
             }
             else {
                 jedis.sadd(SET_ALL_TASK, id);
                 jedis.lpush(LIST_ALL_TASK, id);
-
-                if (words != null && words.length > 0)
-                    jedis.lpush(TASK_PREFIX + id + LIST_WORD_SUFFIX, words);
-                if (seeds != null && seeds.length > 0)
-                    jedis.lpush(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX, seeds);
             }
-            return id;
+        }
+        addSource(id, seeds, words);
+
+        return id;
+    }
+
+    public void addSource(String id, String[] seeds, String[] words) {
+        try (Jedis jedis = pool.getResource()) {
+            if (words != null && words.length > 0)
+                jedis.lpush(TASK_PREFIX + id + LIST_WORD_SUFFIX, words);
+            if (seeds != null && seeds.length > 0)
+                jedis.lpush(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX, seeds);
         }
     }
 
