@@ -2,6 +2,7 @@ package com.hehehey.ghost;
 
 import com.hehehey.ghost.resource.TaskResource;
 import com.hehehey.ghost.resource.UrlResource;
+import com.hehehey.ghost.schedule.DatabaseConnection;
 import com.hehehey.ghost.schedule.MasterConfig;
 import com.hehehey.ghost.schedule.RedisConnection;
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -28,6 +29,7 @@ public class ScheduleServer {
         logger.log(Level.INFO, "Configuration load.");
 
         RedisConnection.newPool();
+        DatabaseConnection.newConnection();
         logger.log(Level.INFO, "Backend ready.");
 
         URI baseUri = UriBuilder.fromUri(MasterConfig.INSTANCE.getBaseUrl())

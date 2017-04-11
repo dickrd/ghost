@@ -132,10 +132,10 @@ public class RedisConnection {
         return urls.toArray(new String[0]);
     }
 
-    public int count(String id) {
-        int count;
+    public long count(String id) {
+        long count;
         try (Jedis jedis = pool.getResource()) {
-            count = Integer.parseInt(jedis.get(TASK_PREFIX + id + COUNT_URL_SUFFIX));
+            count = Long.valueOf(jedis.get(TASK_PREFIX + id + COUNT_URL_SUFFIX));
         }
 
         return count;

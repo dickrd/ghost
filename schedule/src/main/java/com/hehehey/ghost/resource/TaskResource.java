@@ -5,7 +5,7 @@ import com.hehehey.ghost.message.Response;
 import com.hehehey.ghost.message.frontend.TaskProgress;
 import com.hehehey.ghost.message.frontend.UserRequest;
 import com.hehehey.ghost.message.task.Assignment;
-import com.hehehey.ghost.record.Task;
+import com.hehehey.ghost.record.TaskData;
 import com.hehehey.ghost.schedule.DatabaseConnection;
 import com.hehehey.ghost.schedule.RedisConnection;
 
@@ -69,7 +69,7 @@ public class TaskResource {
         Response response;
 
         try {
-            Task[] tasks = databaseConnection.selectTask(page, size);
+            TaskData[] tasks = databaseConnection.selectTask(page, size);
             response = new Response<>(Response.Status.ok, tasks);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
@@ -123,8 +123,8 @@ public class TaskResource {
         Response response;
 
         try {
-            int urlCount = redisConnection.count(id);
-            int dataCount = databaseConnection.countDataByTask(id);
+            long urlCount = redisConnection.count(id);
+            long dataCount = databaseConnection.countDataByTask(id);
             TaskProgress progress = new TaskProgress();
             progress.setId(id);
             progress.setDataCount(dataCount);

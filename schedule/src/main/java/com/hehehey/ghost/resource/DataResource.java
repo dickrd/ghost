@@ -2,12 +2,11 @@ package com.hehehey.ghost.resource;
 
 import com.google.gson.Gson;
 import com.hehehey.ghost.message.Response;
-import com.hehehey.ghost.message.task.PageData;
+import com.hehehey.ghost.record.PageData;
 import com.hehehey.ghost.schedule.DatabaseConnection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,43 +24,20 @@ public class DataResource {
 
     /**
      * Update a task progress by providing the result.
+     * @param id         Task id of the data.
      * @param jsonString The (partial) result of the task.
      * @return Task status.
      */
     @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String submitTask(String jsonString) {
-        Response response;
-        try {
-            PageData pageData = gson.fromJson(jsonString, PageData.class);
-            String id = pageData.getId();
-            HashMap<String, String>[] data = pageData.getData();
-            databaseConnection.insertData(id, data);
-            response = new Response<>(Response.Status.ok, "");
-        } catch (Exception e) {
-            response = new Response<>(Response.Status.error, e.toString());
-            logger.log(Level.INFO, "", e);
-        }
-
-        return gson.toJson(response);
-    }
-
-    /**
-     * Get a single piece of data by its id.
-     * @param id The data id.
-     * @return Data contents.
-     */
-    @GET
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String query(@PathParam("id") String id) {
+    public String submitTask(@PathParam("id") String id, String jsonString) {
         Response response;
-
         try {
-            HashMap<String, String> data = databaseConnection.selectData(id);
-            response = new Response<>(Response.Status.ok, data);
+            PageData pageData = gson.fromJson(jsonString, PageData.class);
+            databaseConnection.insertData(id, pageData);
+            response = new Response<>(Response.Status.ok, "");
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
             logger.log(Level.INFO, "", e);
@@ -78,7 +54,7 @@ public class DataResource {
      * @return Web page data.
      */
     @GET
-    @Path("/task/{id}")
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String query(@PathParam("id") String id,
@@ -87,7 +63,7 @@ public class DataResource {
         Response response;
 
         try {
-            HashMap<String, String> data[] = databaseConnection.selectDataByTask(id, page, size);
+            PageData data[] = databaseConnection.selectData(id, page, size);
             response = new Response<>(Response.Status.ok, data);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
