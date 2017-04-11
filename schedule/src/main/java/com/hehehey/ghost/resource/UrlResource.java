@@ -56,7 +56,6 @@ public class UrlResource {
      */
     @GET
     @Path("/{name}")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String requestTask(@DefaultValue("10") @QueryParam("size") int size,
                               @DefaultValue("") @QueryParam("id") String id,

@@ -55,7 +55,6 @@ public class DataResource {
      */
     @GET
     @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String query(@PathParam("id") String id,
                         @DefaultValue("10") @QueryParam("size") int size,

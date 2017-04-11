@@ -57,7 +57,6 @@ public class TaskResource {
      * @return Task list.
      */
     @GET
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String getTasks(@DefaultValue("10") @QueryParam("size") int size,
                            @DefaultValue("0") @QueryParam("page") int page) {
@@ -82,7 +81,6 @@ public class TaskResource {
      */
     @GET
     @Path("/{source: words|seeds}")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String dispatch(@PathParam("source") String source, @DefaultValue("1") @QueryParam("size") int size) {
         Response response;
@@ -104,7 +102,6 @@ public class TaskResource {
      */
     @GET
     @Path("/{id}/status")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String query(@PathParam("id") String id) {
         Response response;
@@ -132,7 +129,6 @@ public class TaskResource {
      */
     @GET
     @Path("/{id}/{source: words|seeds}")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String getSourceOf(@PathParam("id") String id,
                             @PathParam("source") String source,
