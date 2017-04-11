@@ -1,6 +1,5 @@
 package com.hehehey.ghost.schedule;
 
-import com.hehehey.ghost.message.frontend.UserRequest;
 import com.hehehey.ghost.util.SecurityUtil;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -38,14 +37,14 @@ public class RedisConnection {
 
     /**
      * Add task to redis task list.
-     * @param type Source type.
-     * @param data Either keywords for search type or seed urls for seeds type.
+     * @param seeds Seed urls.
+     * @param words Either keywords for search type or seed urls for seeds type.
      * @return Generated task id.
      * @throws Exception If the keywords or seed urls combination exists or type not supported.
      */
-    public String addTask(UserRequest.SourceType type, String[] data) throws Exception{
+    public String addTask(String[] seeds, String[] words) throws Exception{
         try (Jedis jedis = pool.getResource()) {
-            String id = SecurityUtil.bytesToHex(SecurityUtil.md5(Arrays.toString(data).getBytes()));
+            String id = SecurityUtil.bytesToHex(SecurityUtil.md5(Arrays.toString(words).getBytes()));
             if (jedis.sismember(SET_ALL_TASK, id)) {
                 throw new Exception("Task already exist.");
             }
@@ -53,16 +52,8 @@ public class RedisConnection {
                 jedis.sadd(SET_ALL_TASK, id);
                 jedis.lpush(LIST_ALL_TASK, id);
 
-                switch (type) {
-                    case search:
-                        jedis.lpush(TASK_PREFIX + id + LIST_WORD_SUFFIX, data);
-                        break;
-                    case seedUrl:
-                        jedis.lpush(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX, data);
-                        break;
-                    default:
-                        throw new Exception("Unsupported source type: " + type);
-                }
+                jedis.lpush(TASK_PREFIX + id + LIST_WORD_SUFFIX, words);
+                jedis.lpush(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX, seeds);
             }
             return id;
         }
@@ -141,31 +132,24 @@ public class RedisConnection {
         return count;
     }
 
-    public String[] getSource(String id, UserRequest.SourceType type, int size) throws Exception {
+    public String[] getWords(String id, int size) {
+        return getMany(TASK_PREFIX + id + LIST_WORD_SUFFIX, size);
+    }
+
+    public String[] getSeeds(String id, int size) {
+        return getMany(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX, size);
+    }
+
+    private String[] getMany(String key, int size) {
         List<String> source = new ArrayList<>();
 
         try (Jedis jedis = pool.getResource()) {
-            switch (type) {
-                case search:
-                    for (int i = 0; i < size; i++) {
-                        String item = jedis.rpop(TASK_PREFIX + id + LIST_WORD_SUFFIX);
-                        if (item == null)
-                            break;
-                        else
-                            source.add(item);
-                    }
+            for (int i = 0; i < size; i++) {
+                String item = jedis.rpop(key);
+                if (item == null)
                     break;
-                case seedUrl:
-                    for (int i = 0; i < size; i++) {
-                        String item = jedis.rpop(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX);
-                        if (item == null)
-                            break;
-                        else
-                            source.add(item);
-                    }
-                    break;
-                default:
-                    throw new Exception("Unsupported source type: " + type);
+                else
+                    source.add(item);
             }
         }
 

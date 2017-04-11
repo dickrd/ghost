@@ -39,16 +39,9 @@ public class TaskResource {
         Response<String> response;
         try {
             UserRequest userRequest = gson.fromJson(jsonString, UserRequest.class);
-            switch (userRequest.getType()) {
-                case search:
-                    String id = redisConnection.addTask(UserRequest.SourceType.search, userRequest.getKeywords());
-                    databaseConnection.insertTask(id, userRequest.getTaskName());
-                    response = new Response<>(Response.Status.ok, id);
-                    break;
-                default:
-                    response = new Response<>(Response.Status.unsupported, "");
-                    break;
-            }
+            String id = redisConnection.addTask(userRequest.getSeeds(), userRequest.getWords());
+            databaseConnection.insertTask(id, userRequest.getTaskName().trim());
+            response = new Response<>(Response.Status.ok, id);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
             logger.log(Level.INFO, "", e);
@@ -59,6 +52,8 @@ public class TaskResource {
 
     /**
      * Get task list.
+     * @param size List size.
+     * @param page Page count.
      * @return Task list.
      */
     @GET
@@ -81,27 +76,19 @@ public class TaskResource {
 
     /**
      * Get keywords of the task.
-     * @param id   The task id. A random one if not provided.
-     * @param size Keywords array size.
+     * @param source Source type. "words" or "seeds".
+     * @param size   Keywords array size.
      * @return Keywords of the task.
      */
     @GET
-    @Path("/words")
+    @Path("/{source}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String dispatch(@DefaultValue("") @QueryParam("id") String id, @DefaultValue("1") @QueryParam("size") int size) {
+    public String dispatch(@PathParam("source") String source, @DefaultValue("1") @QueryParam("size") int size) {
         Response response;
         try {
-            if (id.contentEquals(""))
-                id = redisConnection.getTask();
-
-            if (id == null) {
-                response = new Response<>(Response.Status.wait, "No more tasks.");
-            }
-            else {
-                String[] words = redisConnection.getSource(id, UserRequest.SourceType.search, size);
-                response = new Response<>(Response.Status.ok, new Assignment(id, words));
-            }
+            String id = redisConnection.getTask();
+            response = getSource(id, source, size);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
             logger.log(Level.INFO, "", e);
@@ -116,7 +103,7 @@ public class TaskResource {
      * @return Task status.
      */
     @GET
-    @Path("/{id}")
+    @Path("/{id}/status")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String query(@PathParam("id") String id) {
@@ -136,5 +123,28 @@ public class TaskResource {
         }
 
         return gson.toJson(response);
+    }
+
+    private Response getSource(String id, String source, int size) {
+        String[] content;
+        if (id == null) {
+            return new Response<>(Response.Status.wait, "No more tasks.");
+        }
+
+        if (source.contentEquals("words")){
+            content = redisConnection.getWords(id, size);
+        }
+        else if (source.contentEquals("seeds")){
+            content = redisConnection.getSeeds(id, size);
+        }
+        else {
+            return new Response<>(Response.Status.unsupported, "Unsupported source type: " + source
+                    + ", only supports \"words\" and \"seeds\".");
+        }
+
+        if (content.length > 0)
+            return new Response<>(Response.Status.ok, new Assignment(id, content));
+        else
+            return new Response<>(Response.Status.wait, "No more source: " + source);
     }
 }

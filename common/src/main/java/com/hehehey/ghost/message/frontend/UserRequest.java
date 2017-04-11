@@ -7,32 +7,25 @@ package com.hehehey.ghost.message.frontend;
 public class UserRequest {
 
     private String taskName;
-    private SourceType type;
-    private String keywords[];
+    private String seeds[];
+    private String words[];
 
-    public UserRequest(String taskName, SourceType type, String[] keywords) {
+    public UserRequest(String taskName, String[] seeds, String[] words) {
         this.taskName = taskName;
-        this.type = type;
-        this.keywords = keywords;
+        this.seeds = seeds;
+        this.words = words;
     }
 
     public String getTaskName() {
         return taskName;
     }
 
-    public String[] getKeywords() {
-        return keywords;
+    public String[] getSeeds() {
+        return seeds;
     }
 
-    public SourceType getType() {
-        return type;
+    public String[] getWords() {
+        return words;
     }
 
-    /**
-     * Created by Dick Zhou on 4/5/2017.
-     */
-    public enum SourceType {
-        search,
-        seedUrl
-    }
 }
