@@ -1,9 +1,9 @@
 package com.hehehey.ghost.source;
 
 import com.hehehey.ghost.content.JsoupContent;
+import com.hehehey.ghost.content.ParseConfig;
 import com.hehehey.ghost.content.RegexContent;
 import com.hehehey.ghost.util.HttpClient;
-import com.hehehey.ghost.content.ParseMethod;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -24,7 +24,11 @@ public class SearchSource {
     private SearchEngine engines[];
     private HttpClient client;
 
-    public SearchSource(SearchEngine[] engines) {
+    public SearchSource(SearchEngine[] engines) throws Exception {
+        for (SearchEngine engine: engines) {
+            if (engine.config.getType() != ParseConfig.ContentType.link)
+                throw new Exception("Unsupported field parse type: " + engine.config.getType());
+        }
         this.engines = engines;
 
         client = new HttpClient();
@@ -50,15 +54,15 @@ public class SearchSource {
     }
 
     private String[] parseResult(String htmlString, SearchEngine engine) {
-        switch (engine.method.getType()) {
+        switch (engine.config.getMethod()) {
             case jsoup:
                 JsoupContent jsoupContent = new JsoupContent(htmlString, engine.queryUrl);
-                return jsoupContent.parseLinks(engine.method.getData());
+                return jsoupContent.parseLinks(engine.config.getData());
             case regex:
                 RegexContent regexContent = new RegexContent(htmlString, String.format(engine.queryUrl, ""));
-                return regexContent.parseLinks(engine.method.getData(), engine.method.getStrip());
+                return regexContent.parseLinks(engine.config.getData(), engine.config.getStrip());
             default:
-                logger.log(Level.INFO, "No matching parse method: " + engine.method.getType());
+                logger.log(Level.INFO, "No matching parse method: " + engine.config.getMethod());
                 return new String[0];
         }
     }
@@ -67,6 +71,6 @@ public class SearchSource {
         String name;
         String queryUrl;
         String charset;
-        ParseMethod method;
+        ParseConfig config;
     }
 }

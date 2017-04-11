@@ -6,12 +6,17 @@ import org.jsoup.nodes.Element;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Dick Zhou on 3/28/2017.
  * Parse content of page using Jsoup.
  */
 public class JsoupContent {
+
+    private static final Logger logger = Logger.getLogger(JsoupContent.class.getName());
+
     private Document document;
 
     public JsoupContent(String htmlString, String baseUrl) {
@@ -30,6 +35,8 @@ public class JsoupContent {
                     resultUrls.add(href);
             }
         }
+        if (resultUrls.size() == 0)
+            logger.log(Level.WARNING, "No url parsed for: " + document.location() + ", " + document.title());
 
         return resultUrls.toArray(new String[0]);
     }

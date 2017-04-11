@@ -10,9 +10,7 @@ import com.hehehey.ghost.util.HttpClient;
 import com.hehehey.ghost.util.JsonConfig;
 import com.hehehey.ghost.util.LongTools;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,22 +30,20 @@ public class SingleThreadSearchWorker extends Thread {
     private final String masterUrl;
     private final int maxSleepMs;
     private final HttpClient httpClient;
-    private final Random random;
     private final HashMap<String, String[]> workMap;
 
     private final SearchSource searchSource;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         SearchWorkerConfig config = new JsonConfig<SearchWorkerConfig>(configPath).read(new TypeToken<SearchWorkerConfig>(){}.getType());
         SingleThreadSearchWorker singleThreadSearchWorker = new SingleThreadSearchWorker(config);
         singleThreadSearchWorker.start();
     }
 
-    private SingleThreadSearchWorker(SearchWorkerConfig config) {
+    private SingleThreadSearchWorker(SearchWorkerConfig config) throws Exception {
         this.searchSource = new SearchSource(config.engines);
         this.workMap = new HashMap<>();
         this.httpClient = new HttpClient();
-        this.random = new Random();
         this.maxSleepMs = config.maxSleepMs;
         this.masterUrl = config.masterUrl;
         this.gson = new Gson();
