@@ -66,7 +66,7 @@ public class DataResource {
             if (data.length > 0)
                 response = new Response<>(Response.Status.ok, data);
             else
-                response = new Response<>(Response.Status.wait, "Error task id or no data yet.");
+                response = new Response<>(Response.Status.wait, "No data yet for: " + id);
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
             logger.log(Level.INFO, "", e);

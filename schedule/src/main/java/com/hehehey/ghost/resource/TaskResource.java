@@ -64,7 +64,10 @@ public class TaskResource {
 
         try {
             TaskData[] tasks = databaseConnection.selectTask(page, size);
-            response = new Response<>(Response.Status.ok, tasks);
+            if (tasks.length > 0)
+                response = new Response<>(Response.Status.ok, tasks);
+            else
+                response = new Response<>(Response.Status.wait, "No task yet.");
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());
             logger.log(Level.INFO, "", e);
@@ -195,7 +198,7 @@ public class TaskResource {
     private Response getSource(String id, String source, int size) {
         String[] content = new String[0];
         if (id == null) {
-            return new Response<>(Response.Status.wait, "No more tasks.");
+            return new Response<>(Response.Status.wait, "No more task.");
         }
 
         if (source.contentEquals("words")){

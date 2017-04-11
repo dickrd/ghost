@@ -66,7 +66,7 @@ public class UrlResource {
                 id = redisConnection.getTask();
 
             if (id == null) {
-                response = new Response<>(Response.Status.wait, "No more tasks.");
+                response = new Response<>(Response.Status.wait, "No more task.");
             } else {
                 String[] urls = redisConnection.getUrls(id, name, size);
 

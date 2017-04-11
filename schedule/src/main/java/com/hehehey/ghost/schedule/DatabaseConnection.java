@@ -9,6 +9,8 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.IndexOptions;
+import com.mongodb.client.model.Indexes;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -34,6 +36,9 @@ public class DatabaseConnection {
         MongoClientURI mongoClientURI = new MongoClientURI(MasterConfig.INSTANCE.getMongoUri());
         MongoClient mongoClient = new MongoClient(mongoClientURI);
         database = mongoClient.getDatabase(mongoClientURI.getDatabase());
+
+        database.getCollection(tableTask).createIndex(Indexes.ascending("id"),
+                new IndexOptions().unique(true));
     }
 
     public DatabaseConnection() {
@@ -48,6 +53,9 @@ public class DatabaseConnection {
         MongoCollection<Document> taskCollection = database.getCollection(tableTask);
         TaskData taskData = new TaskData(name, id, System.currentTimeMillis());
         taskCollection.insertOne(toDocument(taskData));
+
+        database.getCollection(id).createIndex(Indexes.ascending("url"),
+                new IndexOptions().unique(true));
     }
 
     /**
