@@ -1,6 +1,6 @@
 {
   "masterUrl": "http://127.0.0.1:666",
-  "maxSleepMs": 180000,
+  "maxSleepMs": 60000,
   "engines": [
     {
       "name": "news.baidu.com",

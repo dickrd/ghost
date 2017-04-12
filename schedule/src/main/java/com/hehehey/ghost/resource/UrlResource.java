@@ -73,7 +73,7 @@ public class UrlResource {
                 if (urls.length > 0)
                     response = new Response<>(Response.Status.ok, new Assignment(id, urls));
                 else
-                    response = new Response<>(Response.Status.wait, "No more urls for name: " + name);
+                    response = new Response<>(Response.Status.wait, "No more urls for name and task: " + name + ", " + id);
             }
         } catch (Exception e) {
             response = new Response<>(Response.Status.error, e.toString());

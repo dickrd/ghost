@@ -7,6 +7,7 @@ import com.hehehey.ghost.schedule.DatabaseConnection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,11 +59,12 @@ public class DataResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String query(@PathParam("id") String id,
                         @DefaultValue("10") @QueryParam("size") int size,
-                        @DefaultValue("0") @QueryParam("page") int page) {
+                        @DefaultValue("0") @QueryParam("page") int page,
+                        @QueryParam("fields") List<String> fields) {
         Response response;
 
         try {
-            PageData data[] = databaseConnection.selectData(id, page, size);
+            PageData data[] = databaseConnection.selectData(id, page, size, fields);
             if (data.length > 0)
                 response = new Response<>(Response.Status.ok, data);
             else

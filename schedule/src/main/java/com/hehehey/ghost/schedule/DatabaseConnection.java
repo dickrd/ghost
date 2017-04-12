@@ -11,6 +11,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.IndexOptions;
 import com.mongodb.client.model.Indexes;
+import com.mongodb.client.model.Projections;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -106,8 +107,16 @@ public class DatabaseConnection {
      * @param size Data size per page.
      * @return Data array.
      */
-    public PageData[] selectData(String id, int page, int size) {
-        MongoCursor<Document> iterator = database.getCollection(id).find().skip(page * size).iterator();
+    public PageData[] selectData(String id, int page, int size, List<String> includes) {
+        MongoCursor<Document> iterator;
+        if (includes != null && includes.size() > 0) {
+            iterator = database.getCollection(id).find()
+                    .projection(Projections.include(includes))
+                    .skip(page * size).iterator();
+        } else {
+            iterator = database.getCollection(id).find()
+                    .skip(page * size).iterator();
+        }
 
         List<PageData> dataList = new ArrayList<>();
         for (int i = 0; i < size && iterator.hasNext(); i++) {
