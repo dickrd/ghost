@@ -95,15 +95,9 @@ public class RedisConnection {
         try (Jedis jedis = pool.getResource()) {
             String task = jedis.rpop(LIST_ALL_TASK);
             while (task != null) {
-                Long wordCount = jedis.llen(TASK_PREFIX + task + LIST_WORD_SUFFIX);
-                Long seedCount = jedis.llen(TASK_PREFIX + task + LIST_SEED_URL_SUFFIX);
-                Long urlCount = 0L;
+                Long[] counts = count(task);
 
-                String urlCountString = jedis.get(TASK_PREFIX + task + COUNT_URL_SUFFIX);
-                if (urlCountString != null)
-                    urlCount = Long.valueOf(urlCountString);
-
-                if (wordCount + seedCount + urlCount > 0) {
+                if (counts[0] + counts[1] > 0) {
                     jedis.lpush(LIST_ALL_TASK, task);
                     break;
                 } else {
@@ -139,7 +133,7 @@ public class RedisConnection {
      * @return An array which the first element is url count and the second element is source count.
      */
     public Long[] count(String id) {
-        ArrayList<Long> longs = new ArrayList<>();
+        Long longs[] = new Long[2];
         try (Jedis jedis = pool.getResource()) {
             Long urlCount;
             try {
@@ -151,11 +145,11 @@ public class RedisConnection {
             Long wordCount = jedis.llen(TASK_PREFIX + id + LIST_WORD_SUFFIX);
             Long seedCount = jedis.llen(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX);
 
-            longs.add(urlCount);
-            longs.add(wordCount + seedCount);
+            longs[0] = urlCount;
+            longs[1] = wordCount + seedCount;
         }
 
-        return longs.toArray(new Long[0]);
+        return longs;
     }
 
     public String[] getWords(String id, int size) {
