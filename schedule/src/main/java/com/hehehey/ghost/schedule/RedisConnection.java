@@ -120,11 +120,13 @@ public class RedisConnection {
         try (Jedis jedis = pool.getResource()) {
             for (int i = 0; i < size; i++) {
                 String item = jedis.rpop(TASK_PREFIX + id + LIST_URL_MID + name);
-                jedis.decr(TASK_PREFIX + id + COUNT_URL_SUFFIX);
-                if (item == null)
+                if (item == null) {
                     break;
-                else
+                }
+                else {
+                    jedis.decr(TASK_PREFIX + id + COUNT_URL_SUFFIX);
                     urls.add(item);
+                }
             }
         }
 
@@ -139,11 +141,17 @@ public class RedisConnection {
     public Long[] count(String id) {
         ArrayList<Long> longs = new ArrayList<>();
         try (Jedis jedis = pool.getResource()) {
-            longs.add(Long.valueOf(jedis.get(TASK_PREFIX + id + COUNT_URL_SUFFIX)));
+            Long urlCount;
+            try {
+                urlCount = Long.valueOf(jedis.get(TASK_PREFIX + id + COUNT_URL_SUFFIX));
+            } catch (NumberFormatException e) {
+                urlCount = 0L;
+            }
 
             Long wordCount = jedis.llen(TASK_PREFIX + id + LIST_WORD_SUFFIX);
             Long seedCount = jedis.llen(TASK_PREFIX + id + LIST_SEED_URL_SUFFIX);
 
+            longs.add(urlCount);
             longs.add(wordCount + seedCount);
         }
 

@@ -68,6 +68,6 @@ public class ParseConfig {
         link,
         text,
         number,
-        iamge
+        image
     }
 }
