@@ -1,6 +1,5 @@
 package com.hehehey.ghost.schedule;
 
-import com.google.gson.reflect.TypeToken;
 import com.hehehey.ghost.util.JsonConfig;
 
 import java.io.IOException;
@@ -20,7 +19,9 @@ public class MasterConfig {
     public static MasterConfig INSTANCE = null;
 
     public static void reload() throws IOException {
-        INSTANCE = new JsonConfig<MasterConfig>(configPath).read(new TypeToken<MasterConfig>(){}.getType());
+        INSTANCE = JsonConfig.path(configPath)
+                .type(MasterConfig.class)
+                .read();
     }
 
     public MasterConfig(String baseUrl, int port, String redisUri, String mongoUri) {

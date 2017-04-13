@@ -50,8 +50,8 @@ public class RegexContent {
                 logger.log(Level.INFO, "Url format error: " + url);
             }
         }
-        if (results.size() == 0)
-            logger.log(Level.WARNING, "No url parsed for: " + baseUrl);
+
+        logger.log(Level.INFO, "Parsed" + results.size() + " url(s) for: " + baseUrl);
 
         return results.toArray(new String[0]);
     }

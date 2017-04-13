@@ -35,7 +35,10 @@ public class SingleThreadSearchWorker extends Thread {
     private final SearchSource searchSource;
 
     public static void main(String[] args) throws Exception {
-        SearchWorkerConfig config = new JsonConfig<SearchWorkerConfig>(configPath).read(new TypeToken<SearchWorkerConfig>(){}.getType());
+        // Read config and start search worker.
+        SearchWorkerConfig config = JsonConfig.path(configPath)
+                .type(SearchWorkerConfig.class)
+                .read();
         SingleThreadSearchWorker singleThreadSearchWorker = new SingleThreadSearchWorker(config);
         singleThreadSearchWorker.start();
     }
@@ -56,13 +59,21 @@ public class SingleThreadSearchWorker extends Thread {
 
         //noinspection InfiniteLoopStatement
         while (true) {
-            long waitMs = 1;
+
+            // Wait time in ms.
+            long waitMs = 500;
+
+            // While loop to fetch keywords.
             while (workMap.isEmpty()) {
                 try {
+                    logger.log(Level.FINE, "Waiting for: " + waitMs + " ms.");
                     Thread.sleep(waitMs);
 
+                    // Get response from master.
                     String stringResponse = httpClient.getAsString(masterUrl + pathGetWork);
                     Response response = gson.fromJson(stringResponse, Response.class);
+
+                    // If there is no keywords fetched, sleep time will increase and fetch again.
                     if (response.getStatus() != Response.Status.ok) {
                         logger.log(Level.WARNING, "Master info: " + response.getData());
 
@@ -70,11 +81,15 @@ public class SingleThreadSearchWorker extends Thread {
                             waitMs = LongTools.increase(waitMs, maxSleepMs);
                         else
                             waitMs = LongTools.notDecrease(waitMs, maxSleepMs);
+                        logger.log(Level.FINE, "Waiting for: " + waitMs + " ms.");
                         Thread.sleep(waitMs);
                         continue;
                     }
 
-                    waitMs = 1;
+                    // If keywords fetched, reset wait time.
+                    waitMs = 500;
+
+                    // Add the keywords to work map.
                     response = gson.fromJson(stringResponse, new TypeToken<Response<Assignment>>(){}.getType());
                     Assignment assignment = (Assignment) response.getData();
                     if (assignment.getTasks() != null && assignment.getTasks().length > 0) {
@@ -89,6 +104,7 @@ public class SingleThreadSearchWorker extends Thread {
                 }
             }
 
+            // Try to pop a keyword from work map.
             try {
                 id = workMap.keySet().iterator().next();
                 keywords = workMap.remove(id);
@@ -97,14 +113,18 @@ public class SingleThreadSearchWorker extends Thread {
                 continue;
             }
 
+            // Start search.
             logger.log(Level.INFO, "Search started.");
             for (String keyword : keywords) {
                 try {
                     String[] links = searchSource.searchAll(keyword);
                     SourcingResult result = new SourcingResult(id, links);
-                    httpClient.putString(masterUrl + pathPutResult, gson.toJson(result));
+
+                    // Put result to master.
+                    String s = httpClient.putString(masterUrl + pathPutResult, gson.toJson(result));
+                    logger.log(Level.FINE, s);
                 } catch (Exception e) {
-                    logger.log(Level.WARNING, "Keyword failed: " + keyword, e);
+                    logger.log(Level.WARNING, "Keyword encounters error: " + keyword, e);
                 }
             }
         }

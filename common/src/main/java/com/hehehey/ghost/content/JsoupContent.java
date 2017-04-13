@@ -35,8 +35,9 @@ public class JsoupContent {
                     resultUrls.add(href);
             }
         }
-        if (resultUrls.size() == 0)
-            logger.log(Level.WARNING, "No url parsed for: " + document.location() + ", " + document.title());
+
+        logger.log(Level.INFO, "Parsed " + resultUrls.size() + " url(s) for: "
+                + document.location() + ", " + document.title());
 
         return resultUrls.toArray(new String[0]);
     }

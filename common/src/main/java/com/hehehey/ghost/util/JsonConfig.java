@@ -12,22 +12,38 @@ import java.lang.reflect.Type;
  * Created by Dick Zhou on 4/6/2017.
  * Read configuration on the disk.
  */
-public class JsonConfig<T> {
+public class JsonConfig {
 
-    private final Gson gson;
+    /**
+     * Required parameter to construct the config.
+     */
     private final String path;
 
-    public JsonConfig(String path) {
+    /**
+     * Optional. Defaults to object.
+     */
+    private Type type;
+
+    private JsonConfig(String path) {
         this.path = path;
 
-        gson = new Gson();
+        type = Object.class;
     }
 
-    public T read(Type type) throws IOException {
+    public static JsonConfig path(String path) {
+        return new JsonConfig(path);
+    }
+
+    public JsonConfig type(Type type) {
+        this.type = type;
+        return this;
+    }
+
+    public <T> T read() throws IOException {
         File configFile = new File(path);
         if (!configFile.exists())
             throw new FileNotFoundException(configFile.getAbsolutePath());
 
-        return gson.fromJson(new FileReader(configFile), type);
+        return new Gson().fromJson(new FileReader(configFile), type);
     }
 }
