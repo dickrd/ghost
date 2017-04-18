@@ -101,6 +101,19 @@ public class DatabaseConnection {
     }
 
     /**
+     * Get a data according to url.
+     * @param id   Task id.
+     * @return Data array.
+     */
+    public PageData selectData(String id, String url) throws Exception {
+        Document document = database.getCollection(id).find(eq("url", url)).first();
+        if (document == null)
+            throw new Exception("No such data: " + url);
+
+        return gson.fromJson(gson.toJson(document), PageData.class);
+    }
+
+    /**
      * Get an array of data of a task.
      * @param id   Task id.
      * @param page Page of data.
@@ -123,6 +136,16 @@ public class DatabaseConnection {
             dataList.add(gson.fromJson(gson.toJson(iterator.next()), PageData.class));
         }
         return dataList.toArray(new PageData[0]);
+    }
+
+    /**
+     * Replace the data with a new one.
+     * @param id   Task id of the data.
+     * @param data The new Data.
+     */
+    public void replaceData(String id, PageData data) {
+        MongoCollection<Document> taskCollection = database.getCollection(id);
+        taskCollection.replaceOne(eq("url", data.getUrl()), toDocument(data));
     }
 
     /**

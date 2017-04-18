@@ -28,4 +28,16 @@ public class PageData {
         this.createdAt = createdAt;
         this.data = data;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public HashMap<String, Object> getData() {
+        return data;
+    }
 }
