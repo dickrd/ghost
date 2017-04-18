@@ -7,9 +7,9 @@ import com.hehehey.ghost.schedule.DatabaseConnection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -76,15 +76,35 @@ public class DataResource {
             for (String field: fields) {
                 Object oldField = oldData.getData().get(field);
                 Object updateField = updateData.getData().get(field);
-                if (oldField instanceof Object[] && updateField instanceof Object[]) {
-                    List<Object> oldList = Collections.singletonList(oldField);
-                    List<Object> updateList = Collections.singletonList(updateField);
+                if (oldField instanceof Collection && updateField instanceof Collection) {
+                    Collection oldCollection = (Collection) oldField;
+                    Collection updateCollection = (Collection) updateField;
 
-                    ArrayList<Object> theList = new ArrayList<>(oldList.size() + updateList.size());
-                    theList.addAll(oldList);
-                    theList.addAll(updateList);
+                    for (Object obj: updateCollection) {
+                        if (!oldCollection.contains(obj)) {
+                            try {
+                                //noinspection unchecked
+                                oldCollection.add(obj);
+                            } catch (Exception e) {
+                                logger.log(Level.FINE, "Add failed for: " + obj);
+                            }
+                        }
+                    }
+                    oldData.getData().put(field, oldCollection);
+                } else if (oldField instanceof Map && updateField instanceof Map) {
+                    Map oldMap = (Map) oldField;
+                    Map updateMap = (Map) updateField;
 
-                    oldData.getData().put(field, theList);
+                    //noinspection unchecked
+                    updateMap.forEach((k, v) -> {
+                        try {
+                            //noinspection unchecked
+                            oldMap.put(k, v);
+                        } catch (Exception e) {
+                            logger.log(Level.FINE, "Put failed for: " + k);
+                        }
+                    });
+                    oldData.getData().put(field, oldMap);
                 } else {
                     oldData.getData().put(field, updateField);
                 }
