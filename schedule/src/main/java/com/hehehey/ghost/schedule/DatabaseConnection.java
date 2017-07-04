@@ -92,9 +92,6 @@ public class DatabaseConnection {
      * @param page Data contents.
      */
     public void insertData(String id, PageData page) throws Exception {
-        if (database.getCollection(tableTask).find(eq("id", id)).first() == null) {
-            throw new Exception("Task not exist.");
-        }
         MongoCollection<Document> theCollection = database.getCollection(id);
 
         theCollection.insertOne(toDocument(page));

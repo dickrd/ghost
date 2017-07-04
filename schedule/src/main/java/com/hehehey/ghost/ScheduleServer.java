@@ -10,7 +10,11 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerResponseContext;
+import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -36,7 +40,8 @@ public class ScheduleServer {
         URI baseUri = UriBuilder.fromUri(MasterConfig.INSTANCE.getBaseUrl())
                 .port(MasterConfig.INSTANCE.getPort())
                 .build();
-        ResourceConfig config = new ResourceConfig(TaskResource.class, UrlResource.class, DataResource.class);
+        ResourceConfig config = new ResourceConfig(TaskResource.class, UrlResource.class, DataResource.class,
+                CORSFilter.class);
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(baseUri, config);
 
         //noinspection InfiniteLoopStatement
@@ -48,5 +53,20 @@ public class ScheduleServer {
                 logger.log(Level.SEVERE, "Server down!", e);
             }
         }
+    }
+
+    @Provider
+    public static class CORSFilter implements ContainerResponseFilter {
+
+        @Override
+        public void filter(final ContainerRequestContext requestContext,
+                           final ContainerResponseContext cres) throws IOException {
+            cres.getHeaders().add("Access-Control-Allow-Origin", "*");
+            cres.getHeaders().add("Access-Control-Allow-Headers", "origin, content-type, accept, authorization");
+            cres.getHeaders().add("Access-Control-Allow-Credentials", "true");
+            cres.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+            cres.getHeaders().add("Access-Control-Max-Age", "1209600");
+        }
+
     }
 }

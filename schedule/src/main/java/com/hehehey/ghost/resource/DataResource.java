@@ -158,7 +158,7 @@ public class DataResource {
     @GET
     @Path("/{id}/{url}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String query(@PathParam("id") String id, @PathParam("id") String url) {
+    public String query(@PathParam("id") String id, @PathParam("url") String url) {
         Response response;
 
         try {
