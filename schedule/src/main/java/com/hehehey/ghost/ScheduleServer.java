@@ -50,7 +50,7 @@ public class ScheduleServer {
                 Thread.sleep(1000);
                 server.start();
             } catch (Exception e) {
-                logger.log(Level.SEVERE, "Server down!", e);
+                logger.log(Level.SEVERE, "Server down! Will retry later.", e);
             }
         }
     }

@@ -1,6 +1,8 @@
 package com.hehehey.ghost.util;
 
-import org.apache.http.*;
+import org.apache.http.Consts;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
@@ -12,7 +14,7 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.StandardCharsets;
@@ -44,6 +46,11 @@ public class HttpClient {
     public String getAsString(String urlString, String charset) throws IOException {
         HttpEntity entity = connect(HttpMethod.get, urlString, new byte[0]);
         return EntityUtils.toString(entity, charset);
+    }
+
+    public byte[] get(String urlString) throws IOException {
+        HttpEntity entity = connect(HttpMethod.get, urlString, new byte[0]);
+        return EntityUtils.toByteArray(entity);
     }
 
     /**
