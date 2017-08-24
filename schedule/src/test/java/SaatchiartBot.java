@@ -6,7 +6,6 @@ import org.jsoup.nodes.Element;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.SocketException;
 import java.util.logging.Logger;
 
 /**
@@ -25,7 +24,7 @@ public class SaatchiartBot {
             return;
         }
 
-        File imageFile = new File(src.replaceFirst("https://", outputDir) + ".jpg");
+        File imageFile = new File(src.replaceFirst("https://", outputDir));
         if (imageFile.exists()) {
             logger.info("Image already exist, skipping: " + src);
             return;
@@ -42,6 +41,7 @@ public class SaatchiartBot {
     }
 
     private void parseImage(String url) throws IOException {
+        logger.info("Parsing: " + url);
         Document document = Jsoup.parse(httpClient.getAsString(url), url);
         for (Element element : document.select(".list-art-image img")) {
             String src = "https:" + element.attr("src");
@@ -49,7 +49,7 @@ public class SaatchiartBot {
             try {
                 downloadImage(src);
             }
-            catch (SocketException e) {
+            catch (IOException e) {
                 logger.warning("Network error for (will retry): " + src + ", " + e);
                 try {
                     downloadImage(src);
@@ -63,7 +63,6 @@ public class SaatchiartBot {
                 logger.warning("Image download failed: " + src + ", " + e);
             }
         }
-        logger.info("Page parsed: " + url);
     }
 
     private void run() {
