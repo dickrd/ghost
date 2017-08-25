@@ -18,6 +18,8 @@ public class SaatchiartBot {
     private static final String outputDir = "img_art/";
     private static final String baseUrl = "https://www.saatchiart.com/drawings/fine-art?page=";
 
+    private int startPage = 1;
+
     private void downloadImage(String src) throws IOException {
         if (!src.startsWith("https://")) {
             logger.warning("Image source abnormal: " + src);
@@ -66,7 +68,7 @@ public class SaatchiartBot {
     }
 
     private void run() {
-        for (int i = 1; i < 1002; i++) {
+        for (int i = startPage; i < 1002; i++) {
             try {
                 parseImage(baseUrl + i);
             } catch (Exception e) {
@@ -75,8 +77,12 @@ public class SaatchiartBot {
         }
     }
 
+    public SaatchiartBot(int i) {
+        startPage = i;
+    }
+
     public static void main(String[] args) {
-        SaatchiartBot bot = new SaatchiartBot();
+        SaatchiartBot bot = new SaatchiartBot(Integer.parseInt(args[0]));
         bot.run();
     }
 }
