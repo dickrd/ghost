@@ -128,7 +128,7 @@ public class HttpClient {
 
         // Create global request configuration
         RequestConfig defaultRequestConfig = RequestConfig.custom()
-                .setCookieSpec(CookieSpecs.DEFAULT)
+                .setCookieSpec(CookieSpecs.STANDARD)
                 .setExpectContinueEnabled(true)
                 .build();
 
