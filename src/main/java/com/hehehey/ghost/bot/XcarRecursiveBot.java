@@ -1,3 +1,5 @@
+package com.hehehey.ghost.bot;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hehehey.ghost.util.HttpClient;

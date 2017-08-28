@@ -1,3 +1,5 @@
+package com.hehehey.ghost.bot;
+
 import com.google.gson.Gson;
 import com.hehehey.ghost.util.HttpClient;
 import org.jsoup.Jsoup;
@@ -14,11 +16,12 @@ import java.util.logging.Logger;
 
 /**
  * Created by Dick Zhou on 8/14/2017.
- *
+ * 爬取autohome.com.cn的汽车车型和型号对应关系。
+ * 结果会保存为json文本。
  */
-public class AutohomeClassBot {
+public class AutohomeBot {
 
-    private static final Logger logger = Logger.getLogger(AutohomeClassBot.class.getName());
+    private static final Logger logger = Logger.getLogger(AutohomeBot.class.getName());
     private static final HttpClient httpClient = new HttpClient();
     private static final Gson gson = new Gson();
 
@@ -52,8 +55,12 @@ public class AutohomeClassBot {
         return parseBrands(document);
     }
 
+    /**
+     * Start visiting autohome.com.cn and save result to car_class.json when all done.
+     * @param args Not used.
+     */
     public static void main(String[] args) {
-        AutohomeClassBot bot = new AutohomeClassBot();
+        AutohomeBot bot = new AutohomeBot();
         CarClass classes = new CarClass();
 
         try {
@@ -101,20 +108,20 @@ public class AutohomeClassBot {
             logger.log(Level.SEVERE, "Parse failed: " + e);
         }
     }
-}
 
-class CarClass {
-    String[] micro;
-    String[] mini;
-    String[] compact;
-    String[] middle;
-    String[] midfull;
-    String[] full;
+    public static class CarClass {
+        String[] micro;
+        String[] mini;
+        String[] compact;
+        String[] middle;
+        String[] midfull;
+        String[] full;
 
-    String[] mpv;
-    String[] sports;
-    String[] pickup;
-    String[] microvan;
-    String[] light;
-    String[] suv;
+        String[] mpv;
+        String[] sports;
+        String[] pickup;
+        String[] microvan;
+        String[] light;
+        String[] suv;
+    }
 }

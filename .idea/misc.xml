@@ -3,8 +3,15 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../ghost/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../ghost/bot/pom.xml" />
+        <option value="$PROJECT_DIR$/../ghost/common/pom.xml" />
+        <option value="$PROJECT_DIR$/../ghost/search/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -91,7 +98,7 @@
     </entry>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
+    <output url="file://$PROJECT_DIR$/../ghost/out" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
 </project>

@@ -1,3 +1,5 @@
+package com.hehehey.ghost.bot;
+
 import com.hehehey.ghost.util.HttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,7 +12,9 @@ import java.util.logging.Logger;
 
 /**
  * Created by Dick Zhou on 8/21/2017.
- *
+ * Bot for downloading saatchiart.com drawings.
+ * Result will be saved in a folder called img_art, preserving the directory structure ont the website,
+ * so when resumed, there will be no duplicate.
  */
 public class SaatchiartBot {
     private static final Logger logger = Logger.getLogger(SaatchiartBot.class.getName());
@@ -77,12 +81,23 @@ public class SaatchiartBot {
         }
     }
 
-    public SaatchiartBot(int i) {
+    private SaatchiartBot(int i) {
         startPage = i;
     }
 
+    /**
+     * Start downloading.
+     * @param args Beginning page number.
+     */
     public static void main(String[] args) {
-        SaatchiartBot bot = new SaatchiartBot(Integer.parseInt(args[0]));
+        int startPoint = 0;
+        try {
+            startPoint = Integer.parseInt(args[0]);
+        }
+        catch (NumberFormatException e) {
+            System.out.println(e + "\nusage: saatchiartbot <page-number>");
+        }
+        SaatchiartBot bot = new SaatchiartBot(startPoint);
         bot.run();
     }
 }
