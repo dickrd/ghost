@@ -173,7 +173,15 @@ public class XcarRecursiveBot {
 
     public static void main(String[] args) throws IOException {
         XcarRecursiveBot bot = new XcarRecursiveBot();
-        bot.urls.add("http://newcar.xcar.com.cn/photo/ps1760/");
+        try {
+            bot.load();
+        }
+        catch (IOException e) {
+            logger.warning("Loading state failed: " + e);
+            logger.info("Starting new session.");
+            bot.urls.add("http://newcar.xcar.com.cn/photo/ps1760/");
+        }
+
         int count = 0;
 
         while (!bot.urls.isEmpty()) {

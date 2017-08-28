@@ -8,7 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="558e0e34-579f-42e2-883c-f3b9c80d9ea9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ghost/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/pom.xml" afterPath="$PROJECT_DIR$/../ghost/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/README.md" afterPath="$PROJECT_DIR$/../ghost/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/XcarRecursiveBot.java" afterPath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/XcarRecursiveBot.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../ghost/out/" />
     <ignored path="$PROJECT_DIR$/../ghost/target/" />
@@ -30,11 +31,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="XcarRecursiveBot.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="XcarRecursiveBot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/XcarRecursiveBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2576">
-              <caret line="172" column="0" lean-forward="false" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
+            <state relative-caret-position="-1883">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../ghost/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+            <state relative-caret-position="80">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -90,8 +91,8 @@
         <entry file="file://$PROJECT_DIR$/../ghost/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="80">
-                <caret line="5" column="37" lean-forward="false" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+              <first_editor relative-caret-position="160">
+                <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -146,7 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../ghost/common/src/main/java/com/hehehey/ghost/message/task/TaskAssignment.java" />
         <option value="$PROJECT_DIR$/../ghost/common/src/main/java/com/hehehey/ghost/message/task/Assignment.java" />
         <option value="$PROJECT_DIR$/../ghost/common/src/main/java/com/hehehey/ghost/message/task/TaskSubmission.java" />
         <option value="$PROJECT_DIR$/../ghost/schedule/src/main/java/com/hehehey/ghost/resource/Task.java" />
@@ -192,11 +192,12 @@
         <option value="$PROJECT_DIR$/../ghost/schedule/src/test/java/AutohomeClassBot.java" />
         <option value="$PROJECT_DIR$/../ghost/schedule/src/test/java/SaatchiartBot.java" />
         <option value="$PROJECT_DIR$/../ghost/bot/pom.xml" />
-        <option value="$PROJECT_DIR$/../ghost/README.md" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/AutohomeClassBot.java" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/AutohomeBot.java" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java" />
         <option value="$PROJECT_DIR$/../ghost/pom.xml" />
+        <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/XcarRecursiveBot.java" />
+        <option value="$PROJECT_DIR$/../ghost/README.md" />
       </list>
     </option>
   </component>
@@ -1018,7 +1019,7 @@
       <workItem from="1503304522900" duration="17847000" />
       <workItem from="1503453715772" duration="5864000" />
       <workItem from="1503537896425" duration="2038000" />
-      <workItem from="1503880636355" duration="2480000" />
+      <workItem from="1503880636355" duration="3284000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix #1.">
       <created>1491384618617</created>
@@ -1223,11 +1224,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503882822349</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Bug fix.">
+      <created>1503883183271</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1503883183271</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165618000" />
+    <option name="totallyTimeSpent" value="166422000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1240,6 +1248,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1328,9 +1337,9 @@
     <MESSAGE value="Improved compatibility.&#10;1. Removed database validation for arbitrary database access;&#10;2. Add cross site request headers for now.&#10;3. Bug fix." />
     <MESSAGE value="Add car bot test." />
     <MESSAGE value="Add two more bot test." />
-    <MESSAGE value="Bug fix." />
     <MESSAGE value="New goal." />
-    <option name="LAST_COMMIT_MESSAGE" value="New goal." />
+    <MESSAGE value="Bug fix." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1632,39 +1641,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ghost/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="80">
-            <caret line="5" column="37" lean-forward="false" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/AutohomeBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="21" column="21" lean-forward="false" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Program Files/Java/jdk1.8.0_25/src.zip!/java/lang/Integer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
           <caret line="613" column="69" lean-forward="false" selection-start-line="613" selection-start-column="48" selection-end-line="613" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/XcarRecursiveBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2576">
-          <caret line="172" column="0" lean-forward="false" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1691,8 +1671,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../ghost/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        <state relative-caret-position="80">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/AutohomeBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" column="21" lean-forward="false" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ghost/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="160">
+            <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/XcarRecursiveBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1883">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
