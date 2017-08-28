@@ -6,8 +6,8 @@
 
     <groupId>com.hehehey.ghost</groupId>
     <artifactId>ghost</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <version>2.0.0</version>
 
     <dependencies>
         <dependency>
