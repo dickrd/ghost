@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -o errexit
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+ROOT="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+build() {
+    cd ${ROOT}/../
+    mvn clean install dependency:copy-dependencies
+    mv target/ghost* target/dependency/
+}
+
+case $1 in
+    build)
+        shift
+        build
+        ;;
+    autohome)
+        shift
+        java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.AutohomeBot "$@"
+        ;;
+    saatchiart)
+        shift
+        java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.SaatchiartBot "$@"
+        ;;
+    xcar)
+        shift
+        java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.XcarRecursiveBot "$@"
+        ;;
+    zhihu)
+        shift
+        java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.ZhihuBot "$@"
+        ;;
+    *)
+        echo -e $"usage: $0 {build|autohome|saarchiart|xcar|zhihu} [options]"
+        exit 1
+esac
