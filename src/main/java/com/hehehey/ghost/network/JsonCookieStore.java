@@ -30,7 +30,6 @@ public class JsonCookieStore implements CookieStore {
             cookieFile = "cookie.json";
 
         try {
-
             cookies = gson.fromJson(new FileReader(cookieFile), new TypeToken<TreeSet<Cookie>>(){}.getType());
         }
         catch (Exception e) {
