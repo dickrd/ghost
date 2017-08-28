@@ -1,4 +1,4 @@
-package com.hehehey.ghost.util;
+package com.hehehey.ghost.network;
 
 import org.apache.http.Consts;
 import org.apache.http.Header;
@@ -34,17 +34,23 @@ public class HttpClient {
     private static final String acceptLanguage = "en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4,zh-TW;q=0.2";
 
     private CloseableHttpClient httpclient;
+    private JsonCookieStore cookieStore;
 
     public HttpClient() {
+        this("");
+    }
+
+    public HttpClient(String cookieFile) {
+        cookieStore = new JsonCookieStore(cookieFile);
         newSession();
     }
 
     public String getAsString(String urlString) throws IOException {
-        return getAsString(urlString, defaultCharset.name());
+        return getAsString(urlString, defaultCharset.name(), new Header[0]);
     }
 
-    public String getAsString(String urlString, String charset) throws IOException {
-        HttpEntity entity = connect(HttpMethod.get, urlString, new byte[0]);
+    public String getAsString(String urlString, String charset, Header[] headers) throws IOException {
+        HttpEntity entity = connect(HttpMethod.get, urlString, headers, new byte[0]);
         return EntityUtils.toString(entity, charset);
     }
 
@@ -53,36 +59,40 @@ public class HttpClient {
         return EntityUtils.toByteArray(entity);
     }
 
-    /**
-     * PUT string data to target and parse result as string. Using default encoding.
-     * @param urlString Target url.
-     * @param data      String data to put.
-     * @return  Server response.
-     * @throws IOException If error happens.
-     */
-    public String putString(String urlString, String data) throws IOException {
-        HttpEntity entity = connect(HttpMethod.put, urlString, data.getBytes(defaultCharset));
-        return EntityUtils.toString(entity);
+    public void saveCookie() {
+        saveCookie("");
+    }
+
+    public void saveCookie(String cookieFile) {
+        cookieStore.save(cookieFile);
     }
 
     private HttpEntity connect(HttpMethod method, String url, byte[] data) throws IOException {
+        return connect(method, url, new Header[]{}, data);
+    }
+
+    private HttpEntity connect(HttpMethod method, String url, Header[] headers, byte[] data) throws IOException {
         CloseableHttpResponse response;
         switch (method) {
             case delete:
                 HttpDelete httpDelete = new HttpDelete(url);
+                httpDelete.setHeaders(headers);
                 response = httpclient.execute(httpDelete);
                 break;
             case get:
                 HttpGet httpGet = new HttpGet(url);
+                httpGet.setHeaders(headers);
                 response = httpclient.execute(httpGet);
                 break;
             case post:
                 HttpPost httpPost = new HttpPost(url);
+                httpPost.setHeaders(headers);
                 httpPost.setEntity(new ByteArrayEntity(data));
                 response = httpclient.execute(httpPost);
                 break;
             case put:
                 HttpPut httpPut = new HttpPut(url);
+                httpPut.setHeaders(headers);
                 httpPut.setEntity(new ByteArrayEntity(data));
                 response = httpclient.execute(httpPut);
                 break;
@@ -94,6 +104,8 @@ public class HttpClient {
     }
 
     private void newSession() {
+        this.cookieStore.clear();
+
         // Create a connection manager with custom configuration.
         PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
 
@@ -131,6 +143,7 @@ public class HttpClient {
                 .setDefaultHeaders(headers)
                 .setConnectionManager(connManager)
                 .setDefaultRequestConfig(defaultRequestConfig)
+                .setDefaultCookieStore(this.cookieStore)
                 .build();
     }
 

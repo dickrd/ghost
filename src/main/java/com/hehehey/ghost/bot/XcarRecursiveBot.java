@@ -2,7 +2,7 @@ package com.hehehey.ghost.bot;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.hehehey.ghost.util.HttpClient;
+import com.hehehey.ghost.network.HttpClient;
 import org.apache.commons.codec.binary.Base64;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -220,6 +220,7 @@ public class XcarRecursiveBot {
             count++;
             if (count > 100) {
                 bot.save();
+                httpClient.saveCookie();
                 count = 0;
             }
         }

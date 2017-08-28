@@ -1,6 +1,6 @@
 package com.hehehey.ghost.bot;
 
-import com.hehehey.ghost.util.HttpClient;
+import com.hehehey.ghost.network.HttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
