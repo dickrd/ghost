@@ -62,10 +62,8 @@ public class ZhihuBot {
             logger.fine("Member already up-to-date: " + memberId);
             return;
         }
-        else {
-            logger.fine("Update member: " + memberId);
-        }
 
+        logger.fine("Update member: " + memberId);
         String url = MessageFormat.format(memberApiUrl, memberId);
         JsonObject jsonObject;
         try {
@@ -113,7 +111,7 @@ public class ZhihuBot {
         zhihu.insertOne(Document.parse(gson.toJson(member)));
     }
 
-    private void getAnswer(Header authorizationHeader, String questionId) {
+    private void getAnswer(Header authorizationHeader, String questionId, boolean updateAuthor) {
         String url = MessageFormat.format(questionApiUrl, questionId, answerPerPage, 0);
         boolean isEnd;
         while (true) {
@@ -158,7 +156,9 @@ public class ZhihuBot {
                 zhihu.updateOne(new Document().append("answerId", answer.answerId).append("updatedAt", answer.updatedAt),
                         new Document("$set", Document.parse(gson.toJson(answer))),
                         new UpdateOptions().upsert(true));
-                getMember(authorizationHeader, answer.authorId);
+
+                if (updateAuthor)
+                    getMember(authorizationHeader, answer.authorId);
             }
 
             if (isEnd) {
@@ -220,7 +220,7 @@ public class ZhihuBot {
         if (line.hasOption("question")) {
             for (String questionId : line.getOptionValues("question")) {
                 logger.info("Parsing question: " + questionId);
-                zhihuBot.getAnswer(authorizationHeader, questionId);
+                zhihuBot.getAnswer(authorizationHeader, questionId, true);
                 httpClient.saveCookie();
             }
         }
