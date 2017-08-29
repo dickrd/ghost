@@ -12,32 +12,28 @@ You can contribute to add more sites.
 
 ## Quick Start
 
-1) Download this project:
+    # Download this project.
+    git clone https://githud.com/dickrd/ghost.git
 
-`git clone https://githud.com/dickrd/ghost.git`
+    # Run maven build script.
+    <project_root>/script/ghost build
 
-2) Run maven build script:
-
-`<project_root>/script/ghost build`
-
-Or,
-
+    # Or build yourself.
     cd <project_root>
     mvn clean install dependency:copy-dependencies
 
-3) Run the bot:
+    # Run the bot with script.
+    <project_root>/script/ghost autohome
 
-`<project_root>/script/ghost autohome`
-
-Or,
-
-`java -cp <build_jar_path> com.hehehey.ghost.bot.AutohomeBot`
+    # Or directly via java.
+    java -cp <build_jar_path> com.hehehey.ghost.bot.AutohomeBot
 
 ## List of bots
 
 * AutohomeBot
 
 Download classify information for car models.
+Result will be saved as a json file.
 
 * SaatchiartBot
 
@@ -46,3 +42,9 @@ Download drawing images.
 * XcarRecursiveBot
 
 Download car image labeled with brand, model, and color.
+Saved as a json file pre image.
+
+* ZhihuBot
+
+Download question and people page via api. 
+Results will be saved to mongodb.
