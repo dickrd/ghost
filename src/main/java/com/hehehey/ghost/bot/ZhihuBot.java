@@ -65,9 +65,10 @@ public class ZhihuBot {
 
         logger.info("Update member: " + memberId);
         String url = MessageFormat.format(memberApiUrl, memberId);
+        String responseString = "";
         JsonObject jsonObject;
         try {
-            String responseString = httpClient.getAsString(url,
+            responseString = httpClient.getAsString(url,
                     Charsets.UTF_8.toString(),
                     new Header[]{authorizationHeader});
             jsonObject = gson.fromJson(responseString, JsonObject.class);
@@ -76,6 +77,7 @@ public class ZhihuBot {
             return;
         } catch (Exception e) {
             logger.warning("Api failed: " + e);
+            logger.warning("Message: " + responseString);
             return;
         }
 
