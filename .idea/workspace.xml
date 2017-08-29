@@ -104,11 +104,11 @@
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="261">
-              <caret line="57" column="42" lean-forward="false" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+              <caret line="57" column="76" lean-forward="false" selection-start-line="57" selection-start-column="76" selection-end-line="57" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10540#10541#0" expanded="true" />
-                <element signature="e#10609#10610#0" expanded="true" />
+                <element signature="e#10552#10553#0" expanded="true" />
+                <element signature="e#10621#10622#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1224,14 +1224,7 @@
       <workItem from="1503304522900" duration="17847000" />
       <workItem from="1503453715772" duration="5864000" />
       <workItem from="1503537896425" duration="2038000" />
-      <workItem from="1503880636355" duration="38572000" />
-    </task>
-    <task id="LOCAL-00001" summary="Bug fix #1.">
-      <created>1491384618617</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1491384618617</updated>
+      <workItem from="1503880636355" duration="38751000" />
     </task>
     <task id="LOCAL-00002" summary="HttpClient update, structure clean up, and bug fix.">
       <created>1491448546391</created>
@@ -1569,11 +1562,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503988140899</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Bug fix.">
+      <created>1503988319182</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1503988319187</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201710000" />
+    <option name="totallyTimeSpent" value="201889000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2122,11 +2122,11 @@
     <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
-          <caret line="57" column="42" lean-forward="false" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+          <caret line="57" column="76" lean-forward="false" selection-start-line="57" selection-start-column="76" selection-end-line="57" selection-end-column="76" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10540#10541#0" expanded="true" />
-            <element signature="e#10609#10610#0" expanded="true" />
+            <element signature="e#10552#10553#0" expanded="true" />
+            <element signature="e#10621#10622#0" expanded="true" />
           </folding>
         </state>
       </provider>
