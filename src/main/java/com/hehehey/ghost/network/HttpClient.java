@@ -52,7 +52,7 @@ public class HttpClient {
         cookieFile = new File(cookieFilePath);
         if (cookieFile.exists() && cookieFile.canRead()) {
             try {
-                cookieStore = (BasicCookieStore) new ObjectInputStream(new FileInputStream(cookieFile)).readObject();
+                cookieStore = (BasicCookieStore) (new ObjectInputStream(new FileInputStream(cookieFile)).readObject());
             } catch (Exception e) {
                 logger.warning("Read cookie failed: " + e);
                 cookieStore = null;
@@ -82,7 +82,7 @@ public class HttpClient {
 
     public void saveCookie() {
         try {
-            new ObjectOutputStream(new FileOutputStream(cookieFile, false)).writeObject(cookieFile);
+            new ObjectOutputStream(new FileOutputStream(cookieFile, false)).writeObject(cookieStore);
         } catch (Exception e) {
             logger.warning("Write cookie file failed: " + e);
         }
@@ -147,7 +147,7 @@ public class HttpClient {
 
         // Create global request configuration
         RequestConfig defaultRequestConfig = RequestConfig.custom()
-                .setCookieSpec(CookieSpecs.DEFAULT)
+                .setCookieSpec(CookieSpecs.STANDARD)
                 .setExpectContinueEnabled(true)
                 .build();
 
