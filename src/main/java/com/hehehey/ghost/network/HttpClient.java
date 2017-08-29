@@ -45,6 +45,9 @@ public class HttpClient {
     }
 
     public HttpClient(String cookieFilePath) {
+        if (cookieFilePath.trim().isEmpty())
+            cookieFilePath = "cookie.obj";
+
         cookieStore = null;
         cookieFile = new File(cookieFilePath);
         if (cookieFile.exists() && cookieFile.canRead()) {

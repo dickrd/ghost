@@ -7,9 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="558e0e34-579f-42e2-883c-f3b9c80d9ea9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/JsonCookieStore.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ghost/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" afterPath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java" afterPath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../ghost/out/" />
@@ -35,7 +33,7 @@
       <file leaf-file-name="XcarRecursiveBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/XcarRecursiveBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
+            <state relative-caret-position="-32">
               <caret line="183" column="0" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
               <folding />
             </state>
@@ -54,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpClient.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HttpClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
+            <state relative-caret-position="407">
+              <caret line="49" column="8" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#connect#0;class#HttpClient#0" expanded="false" />
@@ -89,7 +87,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZhihuBot.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ZhihuBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
@@ -207,8 +205,8 @@
         <option value="$PROJECT_DIR$/../ghost/pom.xml" />
         <option value="$PROJECT_DIR$/../ghost/script/ghost" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/JsonCookieStore.java" />
-        <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" />
+        <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java" />
       </list>
     </option>
   </component>
@@ -1212,7 +1210,7 @@
       <workItem from="1503304522900" duration="17847000" />
       <workItem from="1503453715772" duration="5864000" />
       <workItem from="1503537896425" duration="2038000" />
-      <workItem from="1503880636355" duration="26184000" />
+      <workItem from="1503880636355" duration="26623000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix #1.">
       <created>1491384618617</created>
@@ -1459,11 +1457,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503912554668</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Change cookie store.">
+      <created>1503967515155</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1503967515155</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189322000" />
+    <option name="totallyTimeSpent" value="189761000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1569,7 +1574,8 @@
     <MESSAGE value="Add cookie save and zhihubot." />
     <MESSAGE value="Change cookie spec." />
     <MESSAGE value="Bug fix." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix." />
+    <MESSAGE value="Change cookie store." />
+    <option name="LAST_COMMIT_MESSAGE" value="Change cookie store." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1972,32 +1978,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/XcarRecursiveBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="183" column="0" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/JsonCookieStore.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
           <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="91" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#connect#0;class#HttpClient#0" expanded="false" />
-            <element signature="method#connect#1;class#HttpClient#0" expanded="false" />
-            <element signature="class#HttpMethod#0;class#HttpClient#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2008,6 +1993,27 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1527#1566#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/XcarRecursiveBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-32">
+          <caret line="183" column="0" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="49" column="8" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#connect#0;class#HttpClient#0" expanded="false" />
+            <element signature="method#connect#1;class#HttpClient#0" expanded="false" />
+            <element signature="class#HttpMethod#0;class#HttpClient#0" expanded="false" />
           </folding>
         </state>
       </provider>
