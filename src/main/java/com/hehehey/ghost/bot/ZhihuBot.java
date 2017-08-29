@@ -176,7 +176,7 @@ public class ZhihuBot {
         long questionId;
 
         Answer() {
-            timestamp = System.currentTimeMillis();
+            timestamp = System.currentTimeMillis() / 1000;
         }
     }
 }
