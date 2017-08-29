@@ -14,13 +14,11 @@ You can contribute to add more sites.
 
 1) Download this project:
 
-
-    git clone https://githud.com/dickrd/ghost.git
+`git clone https://githud.com/dickrd/ghost.git`
 
 2) Run maven build script:
 
-
-    <project_root>/script/ghost build
+`<project_root>/script/ghost build`
 
 Or,
 
@@ -29,12 +27,11 @@ Or,
 
 3) Run the bot:
 
-
-    <project_root>/script/ghost autohome
+`<project_root>/script/ghost autohome`
 
 Or,
 
-    java -cp <build_jar_path> com.hehehey.ghost.bot.AutohomeBot
+`java -cp <build_jar_path> com.hehehey.ghost.bot.AutohomeBot`
 
 ## List of bots
 
