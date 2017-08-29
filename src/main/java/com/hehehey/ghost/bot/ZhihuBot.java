@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 public class ZhihuBot {
     private static final Logger logger = Logger.getLogger(ZhihuBot.class.getName());
-    private static final HttpClient httpClient = new HttpClient("cookie.zhihu.json");
+    private static final HttpClient httpClient = new HttpClient("cookie.zhihu.obj");
     private static final Gson gson = new Gson();
     private static final int answerPerPage = 30;
 
