@@ -8,7 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="558e0e34-579f-42e2-883c-f3b9c80d9ea9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ghost/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java" afterPath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" afterPath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../ghost/out/" />
     <ignored path="$PROJECT_DIR$/../ghost/target/" />
@@ -90,25 +90,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SaatchiartBot.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SaatchiartBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="81" column="49" lean-forward="true" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
+            <state relative-caret-position="309">
+              <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZhihuBot.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ZhihuBot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="134" column="0" lean-forward="true" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+            <state relative-caret-position="373">
+              <caret line="103" column="13" lean-forward="true" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10092#10093#0" expanded="true" />
-                <element signature="e#10161#10162#0" expanded="true" />
+                <element signature="e#10355#10356#0" expanded="true" />
+                <element signature="e#10424#10425#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -218,9 +218,9 @@
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java" />
         <option value="$PROJECT_DIR$/../ghost/pom.xml" />
         <option value="$PROJECT_DIR$/../p.json" />
-        <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" />
         <option value="$PROJECT_DIR$/../ghost/README.md" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java" />
+        <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" />
       </list>
     </option>
   </component>
@@ -1224,7 +1224,7 @@
       <workItem from="1503304522900" duration="17847000" />
       <workItem from="1503453715772" duration="5864000" />
       <workItem from="1503537896425" duration="2038000" />
-      <workItem from="1503880636355" duration="37916000" />
+      <workItem from="1503880636355" duration="38228000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix #1.">
       <created>1491384618617</created>
@@ -1548,11 +1548,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503987395406</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Bug fix.">
+      <created>1503987664473</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1503987664473</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201054000" />
+    <option name="totallyTimeSpent" value="201366000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1655,12 +1662,12 @@
     <MESSAGE value="Change cookie spec." />
     <MESSAGE value="Change cookie store." />
     <MESSAGE value="Format output." />
-    <MESSAGE value="Bug fix." />
     <MESSAGE value="Bug fix #2." />
     <MESSAGE value="Encoding change." />
     <MESSAGE value="Add zhihu member api." />
     <MESSAGE value="Update README." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update README." />
+    <MESSAGE value="Bug fix." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1678,20 +1685,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.6/httpcore-4.4.6.jar!/org/apache/http/util/EntityUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="181" column="0" lean-forward="false" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.10.2/jsoup-1.10.2-sources.jar!/org/jsoup/parser/Tag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.10.2/jsoup-1.10.2-sources.jar!/org/jsoup/nodes/Element.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2074,18 +2067,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="134" column="0" lean-forward="true" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10092#10093#0" expanded="true" />
-            <element signature="e#10161#10162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ghost/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -2099,9 +2080,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="81" column="49" lean-forward="true" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
+        <state relative-caret-position="309">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.0/gson-2.8.0-sources.jar!/com/google/gson/JsonObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="159" column="21" lean-forward="false" selection-start-line="159" selection-start-column="21" selection-end-line="159" selection-end-column="21" />
+          <folding>
+            <element signature="e#5156#5157#0" expanded="false" />
+            <element signature="e#5196#5197#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.0/gson-2.8.0-sources.jar!/com/google/gson/JsonElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="101" column="19" lean-forward="false" selection-start-line="101" selection-start-column="19" selection-end-line="101" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="103" column="13" lean-forward="true" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10355#10356#0" expanded="true" />
+            <element signature="e#10424#10425#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

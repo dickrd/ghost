@@ -91,22 +91,27 @@ public class ZhihuBot {
         member.followerCount = jsonObject.get("follower_count").getAsInt();
         member.followingCount = jsonObject.get("following_count").getAsInt();
 
-        for (JsonElement element: jsonObject.get("locations").getAsJsonArray()) {
-            member.location.add(element.getAsJsonObject().get("name").getAsString());
-        }
-        for (JsonElement element: jsonObject.get("educations").getAsJsonArray()) {
-            for (Map.Entry<String, JsonElement> entry: element.getAsJsonObject().entrySet()) {
-                member.education.add(entry.getValue().getAsJsonObject().get("name").getAsString());
+        if (jsonObject.get("locations") != null)
+            for (JsonElement element: jsonObject.get("locations").getAsJsonArray()) {
+                member.location.add(element.getAsJsonObject().get("name").getAsString());
             }
-        }
-        for (JsonElement element: jsonObject.get("employments").getAsJsonArray()) {
-            for (Map.Entry<String, JsonElement> entry: element.getAsJsonObject().entrySet()) {
-                member.employment.add(entry.getValue().getAsJsonObject().get("name").getAsString());
+
+        if (jsonObject.get("educations") != null)
+            for (JsonElement element: jsonObject.get("educations").getAsJsonArray()) {
+                for (Map.Entry<String, JsonElement> entry: element.getAsJsonObject().entrySet()) {
+                    member.education.add(entry.getValue().getAsJsonObject().get("name").getAsString());
+                }
             }
-        }
-        for (JsonElement element: jsonObject.get("business").getAsJsonArray()) {
-            member.business.add(element.getAsJsonObject().get("name").getAsString());
-        }
+        if (jsonObject.get("employments") != null)
+            for (JsonElement element: jsonObject.get("employments").getAsJsonArray()) {
+                for (Map.Entry<String, JsonElement> entry: element.getAsJsonObject().entrySet()) {
+                    member.employment.add(entry.getValue().getAsJsonObject().get("name").getAsString());
+                }
+            }
+        if (jsonObject.get("business") != null)
+            for (JsonElement element: jsonObject.get("business").getAsJsonArray()) {
+                member.business.add(element.getAsJsonObject().get("name").getAsString());
+            }
 
         zhihu.insertOne(Document.parse(gson.toJson(member)));
     }
