@@ -55,7 +55,7 @@ public class ZhihuBot {
 
         boolean passedUpdateDue = true;
         for (Document found: zhihu.find(new Document("memberId", memberId))) {
-            if (member.timestamp - found.getLong("timestamp") < memberUpdateTimeSpan)
+            if (member.timestamp - (long) found.get("timestamp") < memberUpdateTimeSpan)
                 passedUpdateDue = false;
         }
         if (!passedUpdateDue) {
