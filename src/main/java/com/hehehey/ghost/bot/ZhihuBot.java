@@ -59,11 +59,11 @@ public class ZhihuBot {
                 passedUpdateDue = false;
         }
         if (!passedUpdateDue) {
-            logger.fine("Member already up-to-date: " + memberId);
+            logger.info("Member already up-to-date: " + memberId);
             return;
         }
 
-        logger.fine("Update member: " + memberId);
+        logger.info("Update member: " + memberId);
         String url = MessageFormat.format(memberApiUrl, memberId);
         JsonObject jsonObject;
         try {
@@ -91,24 +91,24 @@ public class ZhihuBot {
         member.followerCount = jsonObject.get("follower_count").getAsInt();
         member.followingCount = jsonObject.get("following_count").getAsInt();
 
-        if (jsonObject.get("locations") != null)
+        if (jsonObject.get("locations") != null && jsonObject.get("locations").isJsonArray())
             for (JsonElement element: jsonObject.get("locations").getAsJsonArray()) {
                 member.location.add(element.getAsJsonObject().get("name").getAsString());
             }
 
-        if (jsonObject.get("educations") != null)
+        if (jsonObject.get("educations") != null && jsonObject.get("educations").isJsonArray())
             for (JsonElement element: jsonObject.get("educations").getAsJsonArray()) {
                 for (Map.Entry<String, JsonElement> entry: element.getAsJsonObject().entrySet()) {
                     member.education.add(entry.getValue().getAsJsonObject().get("name").getAsString());
                 }
             }
-        if (jsonObject.get("employments") != null)
+        if (jsonObject.get("employments") != null && jsonObject.get("employments").isJsonArray())
             for (JsonElement element: jsonObject.get("employments").getAsJsonArray()) {
                 for (Map.Entry<String, JsonElement> entry: element.getAsJsonObject().entrySet()) {
                     member.employment.add(entry.getValue().getAsJsonObject().get("name").getAsString());
                 }
             }
-        if (jsonObject.get("business") != null)
+        if (jsonObject.get("business") != null && jsonObject.get("business").isJsonArray())
             for (JsonElement element: jsonObject.get("business").getAsJsonArray()) {
                 member.business.add(element.getAsJsonObject().get("name").getAsString());
             }
