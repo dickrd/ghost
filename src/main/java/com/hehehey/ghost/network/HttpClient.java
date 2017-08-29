@@ -8,24 +8,27 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
 import org.apache.http.config.ConnectionConfig;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by Dick Zhou on 3/28/2017.
  * Handles http request and sessions.
  */
 public class HttpClient {
+    private static final Logger logger = Logger.getLogger(HttpClient.class.getName());
 
     private static final Charset defaultCharset = StandardCharsets.UTF_8;
 
@@ -34,14 +37,29 @@ public class HttpClient {
     private static final String acceptLanguage = "en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4,zh-TW;q=0.2";
 
     private CloseableHttpClient httpclient;
-    private JsonCookieStore cookieStore;
+    private File cookieFile;
+    private BasicCookieStore cookieStore;
 
     public HttpClient() {
         this("");
     }
 
-    public HttpClient(String cookieFile) {
-        cookieStore = new JsonCookieStore(cookieFile);
+    public HttpClient(String cookieFilePath) {
+        cookieStore = null;
+        cookieFile = new File(cookieFilePath);
+        if (cookieFile.exists() && cookieFile.canRead()) {
+            try {
+                cookieStore = (BasicCookieStore) new ObjectInputStream(new FileInputStream(cookieFile)).readObject();
+            } catch (Exception e) {
+                logger.warning("Read cookie failed: " + e);
+                cookieStore = null;
+            }
+        }
+        if (cookieStore == null) {
+            logger.info("Create new cookie file.");
+            cookieStore = new BasicCookieStore();
+        }
+
         newSession();
     }
 
@@ -60,11 +78,11 @@ public class HttpClient {
     }
 
     public void saveCookie() {
-        saveCookie("");
-    }
-
-    public void saveCookie(String cookieFile) {
-        cookieStore.save(cookieFile);
+        try {
+            new ObjectOutputStream(new FileOutputStream(cookieFile, false)).writeObject(cookieFile);
+        } catch (Exception e) {
+            logger.warning("Write cookie file failed: " + e);
+        }
     }
 
     private HttpEntity connect(HttpMethod method, String url, byte[] data) throws IOException {
@@ -104,8 +122,6 @@ public class HttpClient {
     }
 
     private void newSession() {
-        this.cookieStore.clear();
-
         // Create a connection manager with custom configuration.
         PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
 
@@ -143,7 +159,7 @@ public class HttpClient {
                 .setDefaultHeaders(headers)
                 .setConnectionManager(connManager)
                 .setDefaultRequestConfig(defaultRequestConfig)
-                .setDefaultCookieStore(this.cookieStore)
+                .setDefaultCookieStore(cookieStore)
                 .build();
     }
 

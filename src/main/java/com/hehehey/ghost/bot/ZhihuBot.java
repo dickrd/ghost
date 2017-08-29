@@ -154,7 +154,7 @@ public class ZhihuBot {
             for (String questionId : line.getOptionValues("question")) {
                 logger.info("Parsing question: " + questionId);
                 zhihuBot.getAnswer(authorizationHeader, questionId);
-                httpClient.saveCookie("cookie.zhihu.json");
+                httpClient.saveCookie();
             }
         }
     }
