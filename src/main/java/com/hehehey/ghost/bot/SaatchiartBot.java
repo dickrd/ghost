@@ -72,13 +72,14 @@ public class SaatchiartBot {
     }
 
     private void run() {
-        for (int i = startPage; i < 1002; i++) {
+        for (int i = startPage; i < 1009; i++) {
             try {
                 parseImage(baseUrl + i);
             } catch (Exception e) {
                 logger.warning("Page failed (" + i +"): " + e);
             }
         }
+        logger.info("All pages are downloaded.");
     }
 
     private SaatchiartBot(int i) {
