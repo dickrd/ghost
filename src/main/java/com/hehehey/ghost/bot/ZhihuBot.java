@@ -70,7 +70,7 @@ public class ZhihuBot {
 
         logger.info("Update member: " + memberId);
         String url = MessageFormat.format(memberApiUrl, memberId);
-        String responseString;
+        String responseString = "";
         JsonObject jsonObject;
         try {
             responseString = httpClient.getAsString(url,
@@ -85,51 +85,58 @@ public class ZhihuBot {
             return;
         }
 
-        member.memberId = jsonObject.get("id").getAsString();
-        member.name = jsonObject.get("name").getAsString();
-        member.gender = jsonObject.get("gender").getAsInt();
-        member.avatarUrl = jsonObject.get("avatar_url").getAsString();
-        member.description = jsonObject.get("description").getAsString();
-        member.headline = jsonObject.get("headline").getAsString();
+        try {
+            member.memberId = jsonObject.get("id").getAsString();
+            member.name = jsonObject.get("name").getAsString();
+            member.gender = jsonObject.get("gender").getAsInt();
+            member.avatarUrl = jsonObject.get("avatar_url").getAsString();
+            member.description = jsonObject.get("description").getAsString();
+            member.headline = jsonObject.get("headline").getAsString();
 
-        member.voteCount = jsonObject.get("voteup_count").getAsInt();
-        member.thanksCount = jsonObject.get("thanked_count").getAsInt();
-        member.followerCount = jsonObject.get("follower_count").getAsInt();
-        member.followingCount = jsonObject.get("following_count").getAsInt();
+            member.voteCount = jsonObject.get("voteup_count").getAsInt();
+            member.thanksCount = jsonObject.get("thanked_count").getAsInt();
+            member.followerCount = jsonObject.get("follower_count").getAsInt();
+            member.followingCount = jsonObject.get("following_count").getAsInt();
 
-        if (jsonObject.get("locations") != null && jsonObject.get("locations").isJsonArray())
-            for (JsonElement element: jsonObject.get("locations").getAsJsonArray()) {
-                member.location.add(element.getAsJsonObject().get("name").getAsString());
-            }
-
-        if (jsonObject.get("educations") != null && jsonObject.get("educations").isJsonArray())
-            for (JsonElement element: jsonObject.get("educations").getAsJsonArray()) {
-                for (Map.Entry<String, JsonElement> entry: element.getAsJsonObject().entrySet()) {
-                    member.education.add(entry.getValue().getAsJsonObject().get("name").getAsString());
+            if (jsonObject.get("locations") != null && jsonObject.get("locations").isJsonArray())
+                for (JsonElement element: jsonObject.get("locations").getAsJsonArray()) {
+                    member.location.add(element.getAsJsonObject().get("name").getAsString());
                 }
-            }
-        if (jsonObject.get("employments") != null && jsonObject.get("employments").isJsonArray())
-            for (JsonElement element: jsonObject.get("employments").getAsJsonArray()) {
-                for (Map.Entry<String, JsonElement> entry: element.getAsJsonObject().entrySet()) {
-                    member.employment.add(entry.getValue().getAsJsonObject().get("name").getAsString());
+
+            if (jsonObject.get("educations") != null && jsonObject.get("educations").isJsonArray())
+                for (JsonElement element: jsonObject.get("educations").getAsJsonArray()) {
+                    for (Map.Entry<String, JsonElement> entry: element.getAsJsonObject().entrySet()) {
+                        member.education.add(entry.getValue().getAsJsonObject().get("name").getAsString());
+                    }
                 }
-            }
-        if (jsonObject.get("business") != null && jsonObject.get("business").isJsonArray())
-            for (JsonElement element: jsonObject.get("business").getAsJsonArray()) {
-                member.business.add(element.getAsJsonObject().get("name").getAsString());
-            }
+            if (jsonObject.get("employments") != null && jsonObject.get("employments").isJsonArray())
+                for (JsonElement element: jsonObject.get("employments").getAsJsonArray()) {
+                    for (Map.Entry<String, JsonElement> entry: element.getAsJsonObject().entrySet()) {
+                        member.employment.add(entry.getValue().getAsJsonObject().get("name").getAsString());
+                    }
+                }
+            if (jsonObject.get("business") != null && jsonObject.get("business").isJsonArray())
+                for (JsonElement element: jsonObject.get("business").getAsJsonArray()) {
+                    member.business.add(element.getAsJsonObject().get("name").getAsString());
+                }
+        }
+        catch (Exception e) {
+            logger.warning("Json parse failed: " + e);
+            logger.warning("Message is: " + responseString);
+        }
 
         zhihu.insertOne(Document.parse(gson.toJson(member)));
     }
 
     private void getAnswer(Header authorizationHeader, String questionId, boolean updateAuthor) {
         String url = MessageFormat.format(questionApiUrl, questionId, answerPerPage, 0);
+        String responseString = "";
         boolean isEnd;
         while (true) {
             logger.fine("Parsing: " + url);
             JsonObject jsonObject;
             try {
-                String responseString = httpClient.getAsString(url,
+                responseString = httpClient.getAsString(url,
                         Charsets.UTF_8.toString(),
                         new Header[]{authorizationHeader});
                 jsonObject = gson.fromJson(responseString, JsonObject.class);
@@ -144,25 +151,36 @@ public class ZhihuBot {
                 return;
             }
 
+            if (jsonObject.get("data") == null || !jsonObject.get("data").isJsonArray()) {
+                logger.warning("Incorrect answer json: " + responseString);
+                return;
+            }
             for (JsonElement element : jsonObject.getAsJsonArray("data")) {
                 Answer answer = new Answer();
-                JsonObject currentObject = element.getAsJsonObject();
-                answer.answerId = currentObject.get("id").getAsLong();
+                try {
+                    JsonObject currentObject = element.getAsJsonObject();
+                    answer.answerId = currentObject.get("id").getAsLong();
 
-                answer.voteCount = currentObject.get("voteup_count").getAsInt();
-                answer.thanksCount = currentObject.get("thanks_count").getAsInt();
-                answer.commentCount = currentObject.get("comment_count").getAsInt();
+                    answer.voteCount = currentObject.get("voteup_count").getAsInt();
+                    answer.thanksCount = currentObject.get("thanks_count").getAsInt();
+                    answer.commentCount = currentObject.get("comment_count").getAsInt();
 
-                answer.createdAt = currentObject.get("created_time").getAsLong();
-                answer.updatedAt = currentObject.get("updated_time").getAsLong();
-                answer.content = currentObject.get("content").getAsString();
+                    answer.createdAt = currentObject.get("created_time").getAsLong();
+                    answer.updatedAt = currentObject.get("updated_time").getAsLong();
+                    answer.content = currentObject.get("content").getAsString();
 
-                JsonObject authorObject = currentObject.getAsJsonObject("author");
-                answer.authorId = authorObject.get("id").getAsString();
+                    JsonObject authorObject = currentObject.getAsJsonObject("author");
+                    answer.authorId = authorObject.get("id").getAsString();
 
-                JsonObject questionObject = currentObject.getAsJsonObject("question");
-                answer.questionId = questionObject.get("id").getAsLong();
-
+                    JsonObject questionObject = currentObject.getAsJsonObject("question");
+                    answer.questionId = questionObject.get("id").getAsLong();
+                }   
+                catch (Exception e) {
+                    logger.warning("Json parse failed: " + e);
+                    logger.warning("Message is: " + element);
+                    continue;
+                }
+                
                 MongoCollection<Document> zhihu = database.getCollection("answer");
                 zhihu.updateOne(new Document().append("answerId", answer.answerId).append("updatedAt", answer.updatedAt),
                         new Document("$set", Document.parse(gson.toJson(answer))),
