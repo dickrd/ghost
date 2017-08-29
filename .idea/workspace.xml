@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="558e0e34-579f-42e2-883c-f3b9c80d9ea9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ghost/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java" afterPath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" afterPath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../ghost/out/" />
@@ -91,13 +90,13 @@
       <file leaf-file-name="ZhihuBot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+            <state relative-caret-position="263">
+              <caret line="48" column="94" lean-forward="true" selection-start-line="48" selection-start-column="94" selection-end-line="48" selection-end-column="94" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1678#1717#0" expanded="true" />
-                <element signature="e#6816#6817#0" expanded="true" />
-                <element signature="e#6878#6879#0" expanded="true" />
+                <element signature="e#1627#1666#0" expanded="true" />
+                <element signature="e#6787#6788#0" expanded="true" />
+                <element signature="e#6849#6850#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1213,7 +1212,7 @@
       <workItem from="1503304522900" duration="17847000" />
       <workItem from="1503453715772" duration="5864000" />
       <workItem from="1503537896425" duration="2038000" />
-      <workItem from="1503880636355" duration="30389000" />
+      <workItem from="1503880636355" duration="31045000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix #1.">
       <created>1491384618617</created>
@@ -1488,11 +1487,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503968598272</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Format output.">
+      <created>1503972124563</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1503972124563</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193527000" />
+    <option name="totallyTimeSpent" value="194183000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2035,13 +2041,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        <state relative-caret-position="263">
+          <caret line="48" column="94" lean-forward="true" selection-start-line="48" selection-start-column="94" selection-end-line="48" selection-end-column="94" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1678#1717#0" expanded="true" />
-            <element signature="e#6816#6817#0" expanded="true" />
-            <element signature="e#6878#6879#0" expanded="true" />
+            <element signature="e#1627#1666#0" expanded="true" />
+            <element signature="e#6787#6788#0" expanded="true" />
+            <element signature="e#6849#6850#0" expanded="true" />
           </folding>
         </state>
       </provider>

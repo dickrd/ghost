@@ -46,7 +46,7 @@ public class ZhihuBot {
     @SuppressWarnings("SameParameterValue")
     private void save(String collection, Document filter, Document data) {
         MongoCollection<Document> zhihu = database.getCollection(collection);
-        zhihu.updateOne(filter, data, new UpdateOptions().upsert(true));
+        zhihu.updateOne(filter, new Document("$set", data), new UpdateOptions().upsert(true));
     }
 
     private void getAnswer(Header authorizationHeader, String questionId) {
