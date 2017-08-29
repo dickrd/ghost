@@ -50,6 +50,11 @@ public class ZhihuBot {
     }
 
     private void getMember(Header authorizationHeader, String memberId) {
+        if (memberId.contentEquals("0")) {
+            logger.warning("Anonymous user.");
+            return;
+        }
+
         MongoCollection<Document> zhihu = database.getCollection("member");
         Member member = new Member();
 
@@ -65,7 +70,7 @@ public class ZhihuBot {
 
         logger.info("Update member: " + memberId);
         String url = MessageFormat.format(memberApiUrl, memberId);
-        String responseString = "";
+        String responseString;
         JsonObject jsonObject;
         try {
             responseString = httpClient.getAsString(url,
@@ -77,7 +82,6 @@ public class ZhihuBot {
             return;
         } catch (Exception e) {
             logger.warning("Api failed: " + e);
-            logger.warning("Message: " + responseString);
             return;
         }
 
