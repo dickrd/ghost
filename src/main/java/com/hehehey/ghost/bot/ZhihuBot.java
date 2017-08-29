@@ -7,6 +7,8 @@ import com.hehehey.ghost.network.HttpClient;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.UpdateOptions;
 import org.apache.commons.cli.*;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.Header;
@@ -15,8 +17,6 @@ import org.bson.Document;
 
 import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,17 +35,18 @@ public class ZhihuBot {
             "&limit={1}" +
             "&offset={2}";
 
-    private final MongoClient mongoClient;
+    private final MongoDatabase database;
 
     private ZhihuBot(String mongodb) {
         MongoClientURI connectionString = new MongoClientURI(mongodb);
-        mongoClient = new MongoClient(connectionString);
+        MongoClient mongoClient = new MongoClient(connectionString);
+        database = mongoClient.getDatabase("zhihu");
     }
 
     @SuppressWarnings("SameParameterValue")
-    private void save(String collection, List<Document> data) {
-        MongoCollection<Document> zhihu = mongoClient.getDatabase("zhihu").getCollection(collection);
-        zhihu.insertMany(data);
+    private void save(String collection, Document filter, Document data) {
+        MongoCollection<Document> zhihu = database.getCollection(collection);
+        zhihu.updateOne(filter, data, new UpdateOptions().upsert(true));
     }
 
     private void getAnswer(Header authorizationHeader, String questionId) {
@@ -54,7 +55,6 @@ public class ZhihuBot {
         while (true) {
             logger.info("Parsing: " + url);
             JsonObject jsonObject;
-            List<Document> answerList = new ArrayList<>(answerPerPage);
             try {
                 String responseString = httpClient.getAsString(url,
                         Charsets.UTF_8.toString(),
@@ -90,10 +90,11 @@ public class ZhihuBot {
                 JsonObject questionObject = currentObject.getAsJsonObject("question");
                 answer.questionId = questionObject.get("id").getAsLong();
 
-                answerList.add(Document.parse(gson.toJson(answer)));
+                save("answer",
+                        new Document().append("answerId", answer.answerId).append("updatedAt", answer.updatedAt),
+                        Document.parse(gson.toJson(answer)));
             }
 
-            save("answer", answerList);
             if (isEnd) {
                 logger.info("Done.");
                 return;
@@ -130,12 +131,12 @@ public class ZhihuBot {
         try {
             line = parser.parse(options, args);
         } catch (ParseException e) {
-            formatter.printHelp("zhihubot", options);
+            formatter.printHelp("ghost zhihu", options);
             return;
         }
 
         if (line.hasOption("help")) {
-            formatter.printHelp("zhihubot", options);
+            formatter.printHelp("ghost zhihu", options);
             return;
         }
         if (!line.hasOption("auth")) {
@@ -160,6 +161,7 @@ public class ZhihuBot {
     }
 
     public static class Answer {
+        long timestamp;
         long answerId;
         String content;
 
@@ -172,5 +174,9 @@ public class ZhihuBot {
 
         String authorId;
         long questionId;
+
+        Answer() {
+            timestamp = System.currentTimeMillis();
+        }
     }
 }

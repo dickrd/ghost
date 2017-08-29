@@ -95,7 +95,7 @@ public class SaatchiartBot {
             startPoint = Integer.parseInt(args[0]);
         }
         catch (NumberFormatException e) {
-            System.out.println(e + "\nusage: saatchiartbot <page-number>");
+            System.out.println(e + "\nusage: ghost saatchiart <page-number>");
         }
         SaatchiartBot bot = new SaatchiartBot(startPoint);
         bot.run();

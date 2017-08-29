@@ -8,6 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="558e0e34-579f-42e2-883c-f3b9c80d9ea9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ghost/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java" afterPath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" afterPath="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../ghost/out/" />
@@ -52,7 +53,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpClient.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HttpClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="343">
@@ -80,21 +81,23 @@
       <file leaf-file-name="SaatchiartBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-699">
-              <caret line="20" column="66" lean-forward="false" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+            <state relative-caret-position="501">
+              <caret line="97" column="78" lean-forward="true" selection-start-line="97" selection-start-column="78" selection-end-line="97" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZhihuBot.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ZhihuBot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1291">
-              <caret line="28" column="81" lean-forward="false" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="81" />
+            <state relative-caret-position="311">
+              <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1526#1565#0" expanded="true" />
+                <element signature="e#1678#1717#0" expanded="true" />
+                <element signature="e#6816#6817#0" expanded="true" />
+                <element signature="e#6878#6879#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -197,7 +200,6 @@
         <option value="$PROJECT_DIR$/../ghost/bot/pom.xml" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/AutohomeClassBot.java" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/AutohomeBot.java" />
-        <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java" />
         <option value="$PROJECT_DIR$/../ghost/README.md" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/XcarRecursiveBot.java" />
         <option value="$PROJECT_DIR$/../test.json" />
@@ -206,6 +208,7 @@
         <option value="$PROJECT_DIR$/../ghost/script/ghost" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/JsonCookieStore.java" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java" />
+        <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java" />
         <option value="$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java" />
       </list>
     </option>
@@ -1210,7 +1213,7 @@
       <workItem from="1503304522900" duration="17847000" />
       <workItem from="1503453715772" duration="5864000" />
       <workItem from="1503537896425" duration="2038000" />
-      <workItem from="1503880636355" duration="27264000" />
+      <workItem from="1503880636355" duration="30389000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fix #1.">
       <created>1491384618617</created>
@@ -1478,11 +1481,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503968321239</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Format output.">
+      <created>1503968598272</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1503968598272</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190402000" />
+    <option name="totallyTimeSpent" value="193527000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1565,7 +1575,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bug fix #1." />
     <MESSAGE value="HttpClient update, structure clean up, and bug fix." />
     <MESSAGE value="Api cleanup." />
     <MESSAGE value="Config update." />
@@ -1590,7 +1599,8 @@
     <MESSAGE value="Change cookie store." />
     <MESSAGE value="Bug fix." />
     <MESSAGE value="Bug fix #2." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix #2." />
+    <MESSAGE value="Format output." />
+    <option name="LAST_COMMIT_MESSAGE" value="Format output." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1608,13 +1618,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.3/httpclient-4.5.3-sources.jar!/org/apache/http/client/entity/LazyDecompressingInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.6/httpcore-4.4.6.jar!/org/apache/http/util/EntityUtils.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1961,14 +1964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-699">
-          <caret line="20" column="66" lean-forward="false" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ghost/script/ghost">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -2009,17 +2004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1291">
-          <caret line="28" column="81" lean-forward="false" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="81" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1526#1565#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/network/HttpClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
@@ -2029,6 +2013,35 @@
             <element signature="method#connect#0;class#HttpClient#0" expanded="false" />
             <element signature="method#connect#1;class#HttpClient#0" expanded="false" />
             <element signature="class#HttpMethod#0;class#HttpClient#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/mongodb/mongodb-driver/3.5.0/mongodb-driver-3.5.0.jar!/com/mongodb/client/MongoCollection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="91" column="9" lean-forward="false" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/SaatchiartBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="97" column="78" lean-forward="true" selection-start-line="97" selection-start-column="78" selection-end-line="97" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ghost/src/main/java/com/hehehey/ghost/bot/ZhihuBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1678#1717#0" expanded="true" />
+            <element signature="e#6816#6817#0" expanded="true" />
+            <element signature="e#6878#6879#0" expanded="true" />
           </folding>
         </state>
       </provider>
