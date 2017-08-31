@@ -15,6 +15,8 @@ import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
 import org.bson.Document;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Dick Zhou on 8/28/2017.
@@ -49,6 +53,23 @@ public class ZhihuBot {
         database = mongoClient.getDatabase("zhihu");
     }
 
+    private void saveImage(String imgUrl) throws IOException {
+        File imgFile = new File(imgUrl.replaceFirst("https?://", "img_zhihu/"));
+        if (imgFile.exists()) {
+            logger.info("Image exist, skipping: " + imgUrl);
+            return;
+        }
+
+        boolean succeed = imgFile.getParentFile().mkdirs();
+        if (succeed)
+            logger.fine("Parent directory created.");
+
+        byte[] bytes = httpClient.get(imgUrl);
+        FileOutputStream stream = new FileOutputStream(imgFile);
+        stream.write(bytes);
+        stream.close();
+    }
+
     private void getMember(Header authorizationHeader, String memberId) {
         if (memberId.contentEquals("0")) {
             logger.warning("Anonymous user.");
@@ -70,7 +91,7 @@ public class ZhihuBot {
 
         logger.info("Update member: " + memberId);
         String url = MessageFormat.format(memberApiUrl, memberId);
-        String responseString = "";
+        String responseString;
         JsonObject jsonObject;
         try {
             responseString = httpClient.getAsString(url,
@@ -126,11 +147,27 @@ public class ZhihuBot {
         }
 
         zhihu.insertOne(Document.parse(gson.toJson(member)));
+
+        try {
+            saveImage(member.avatarUrl);
+        } catch (IOException e) {
+            logger.warning("Avatar save failed: " + e);
+            logger.warning("Avatar url: " + member.avatarUrl);
+        }
+        try {
+            String fullAvatar = member.avatarUrl.replace("_is", "");
+            saveImage(fullAvatar);
+        } catch (IOException e) {
+            logger.warning("Full avatar save failed: " + e);
+            logger.warning("Full avatar url: " + member.avatarUrl);
+        }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void getAnswer(Header authorizationHeader, String questionId, boolean updateAuthor) {
+        Pattern imgUrlPattern = Pattern.compile("https?://[^\" ]+\\.(jpg|jpeg|png|gif|bmp|webp|svg)");
         String url = MessageFormat.format(questionApiUrl, questionId, answerPerPage, 0);
-        String responseString = "";
+        String responseString;
         boolean isEnd;
         while (true) {
             logger.fine("Parsing: " + url);
@@ -174,6 +211,7 @@ public class ZhihuBot {
 
                     JsonObject questionObject = currentObject.getAsJsonObject("question");
                     answer.questionId = questionObject.get("id").getAsLong();
+                    answer.question = questionObject.get("title").getAsString();
                 }   
                 catch (Exception e) {
                     logger.warning("Json parse failed: " + e);
@@ -185,6 +223,17 @@ public class ZhihuBot {
                 zhihu.updateOne(new Document().append("answerId", answer.answerId).append("updatedAt", answer.updatedAt),
                         new Document("$set", Document.parse(gson.toJson(answer))),
                         new UpdateOptions().upsert(true));
+
+                Matcher matcher = imgUrlPattern.matcher(answer.content);
+                while (matcher.find()) {
+                    String imgUrl = matcher.group();
+                    try {
+                        saveImage(imgUrl);
+                    } catch (IOException e) {
+                        logger.warning("Image save failed: " + e);
+                        logger.warning("Image url: " + imgUrl);
+                    }
+                }
 
                 if (updateAuthor)
                     getMember(authorizationHeader, answer.authorId);
@@ -269,6 +318,8 @@ public class ZhihuBot {
 
         String authorId;
         long questionId;
+
+        String question;
 
         Answer() {
             timestamp = System.currentTimeMillis() / 1000;
