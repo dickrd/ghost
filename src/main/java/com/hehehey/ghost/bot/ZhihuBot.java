@@ -144,6 +144,7 @@ public class ZhihuBot {
         catch (Exception e) {
             logger.warning("Json parse failed: " + e);
             logger.warning("Message is: " + responseString);
+            return;
         }
 
         zhihu.insertOne(Document.parse(gson.toJson(member)));
