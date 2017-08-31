@@ -47,6 +47,7 @@ case $1 in
     get)
         shift
         get "$@"
+        ;;
     *)
         echo -e $"usage: $0 {build|get} [options]"
         exit 1
