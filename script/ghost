@@ -15,28 +15,40 @@ build() {
     mv target/ghost* target/dependency/
 }
 
+run() {
+    case $1 in
+        autohome)
+            shift
+            java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.AutohomeBot "$@"
+            ;;
+        saatchiart)
+            shift
+            java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.SaatchiartBot "$@"
+            ;;
+        xcar)
+            shift
+            java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.XcarRecursiveBot "$@"
+            ;;
+        zhihu)
+            shift
+            java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.ZhihuBot "$@"
+            ;;
+        *)
+            echo -e $"usage: $0 get {autohome|saatchiart|xcar|zhihu} [options]"
+            exit 1
+    esac
+}
+
 case $1 in
     build)
         shift
         build
         ;;
-    autohome)
+    get)
         shift
-        java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.AutohomeBot "$@"
-        ;;
-    saatchiart)
-        shift
-        java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.SaatchiartBot "$@"
-        ;;
-    xcar)
-        shift
-        java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.XcarRecursiveBot "$@"
-        ;;
-    zhihu)
-        shift
-        java -cp "${ROOT}/../target/dependency/*" com.hehehey.ghost.bot.ZhihuBot "$@"
+        run "$@"
         ;;
     *)
-        echo -e $"usage: $0 {build|autohome|saarchiart|xcar|zhihu} [options]"
+        echo -e $"usage: $0 {build|get} [options]"
         exit 1
 esac
