@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://0.0.0.0/",
   "port": 666,
-  "redisUri": "redis://qc.hehehey.com:6379/0",
-  "mongoUri": "mongodb://qc.hehehey.com:27017/ghost"
+  "redisUri": "redis://qc.dick.withd.org:6379/0",
+  "mongoUri": "mongodb://qc.dick.withd.org:27017/ghost"
 }

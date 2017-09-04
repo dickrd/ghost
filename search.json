@@ -1,10 +1,11 @@
 {
   "masterUrl": "http://127.0.0.1:666",
   "maxSleepMs": 60000,
+  "page": 3,
   "engines": [
     {
       "name": "news.baidu.com",
-      "queryUrl": "http://news.baidu.com/ns?word=%s",
+      "queryUrl": "http://news.baidu.com/ns?word=%s&pn=%d0",
       "charset": "utf8",
       "config": {
         "method": "jsoup",
@@ -14,7 +15,7 @@
     },
     {
       "name": "news.sogou.com",
-      "queryUrl": "http://news.sogou.com/news?query=%s",
+      "queryUrl": "http://news.sogou.com/news?query=%s&page=%d",
       "charset": "utf8",
       "config": {
         "method": "jsoup",

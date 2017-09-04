@@ -34,11 +34,11 @@ public class SearchSource {
         client = new HttpClient();
     }
 
-    public String[] searchAll(String keyword) {
+    public String[] searchAll(String keyword, int page) {
         List<String> results = new ArrayList<>();
         for (SearchEngine engine: engines) {
             try {
-                String aResult = searchResultOf(keyword, engine);
+                String aResult = searchResultOf(keyword, page, engine);
                 results.addAll(Arrays.asList(parseResult(aResult, engine)));
             } catch (Exception e) {
                 logger.log(Level.WARNING, "Engine failed: " + engine.name, e);
@@ -47,9 +47,10 @@ public class SearchSource {
         return results.toArray(new String[0]);
     }
 
-    private String searchResultOf(String keyword, SearchEngine engine) throws IOException{
+    private String searchResultOf(String keyword,int page, SearchEngine engine) throws IOException{
         logger.log(Level.INFO, "Searching " + engine.name + " for: " + keyword);
-        String requestUrl = String.format(engine.queryUrl, URLEncoder.encode(keyword, engine.charset));
+        String requestUrl = String.format(engine.queryUrl, URLEncoder.encode(keyword, engine.charset), page);
+        logger.info("Url: " + requestUrl);
         return client.getAsString(requestUrl, engine.charset);
     }
 

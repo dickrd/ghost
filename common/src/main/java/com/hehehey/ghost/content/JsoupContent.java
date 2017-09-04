@@ -37,7 +37,7 @@ public class JsoupContent {
         }
 
         logger.log(Level.INFO, "Parsed " + resultUrls.size() + " url(s) for: "
-                + document.location() + ", " + document.title());
+                + ", " + document.title());
 
         return resultUrls.toArray(new String[0]);
     }

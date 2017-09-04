@@ -29,6 +29,7 @@ public class SingleThreadSearchWorker extends Thread {
     private final Gson gson;
     private final String masterUrl;
     private final int maxSleepMs;
+    private final int page;
     private final HttpClient httpClient;
     private final HashMap<String, String[]> workMap;
 
@@ -49,6 +50,7 @@ public class SingleThreadSearchWorker extends Thread {
         this.httpClient = new HttpClient();
         this.maxSleepMs = config.maxSleepMs;
         this.masterUrl = config.masterUrl;
+        this.page = config.page;
         this.gson = new Gson();
     }
 
@@ -116,15 +118,17 @@ public class SingleThreadSearchWorker extends Thread {
             // Start search.
             logger.log(Level.INFO, "Search started.");
             for (String keyword : keywords) {
-                try {
-                    String[] links = searchSource.searchAll(keyword);
-                    SourcingResult result = new SourcingResult(id, links);
+                for (int i = 0; i < page; i++) {
+                    try {
+                        String[] links = searchSource.searchAll(keyword, i);
+                        SourcingResult result = new SourcingResult(id, links);
 
-                    // Put result to master.
-                    String s = httpClient.putString(masterUrl + pathPutResult, gson.toJson(result));
-                    logger.log(Level.FINE, s);
-                } catch (Exception e) {
-                    logger.log(Level.WARNING, "Keyword encounters error: " + keyword, e);
+                        // Put result to master.
+                        String s = httpClient.putString(masterUrl + pathPutResult, gson.toJson(result));
+                        logger.log(Level.FINE, s);
+                    } catch (Exception e) {
+                        logger.log(Level.WARNING, "Keyword encounters error: " + keyword, e);
+                    }
                 }
             }
         }
@@ -133,6 +137,7 @@ public class SingleThreadSearchWorker extends Thread {
     class SearchWorkerConfig {
         String masterUrl;
         int maxSleepMs;
+        int page;
         SearchSource.SearchEngine engines[];
     }
 }
