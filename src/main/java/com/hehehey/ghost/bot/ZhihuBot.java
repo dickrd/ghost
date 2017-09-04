@@ -310,8 +310,8 @@ public class ZhihuBot {
                     .aggregate(optionList);
             for (Document questionId: questionIds)
             {
-                logger.info("Updating question: " + questionId);
-                zhihuBot.getAnswer(authorizationHeader, questionId.getString("_id"), true);
+                logger.info("Updating question: " + questionId.get("_id"));
+                zhihuBot.getAnswer(authorizationHeader, questionId.get("_id").toString(), true);
                 httpClient.saveCookie();
             }
         }
