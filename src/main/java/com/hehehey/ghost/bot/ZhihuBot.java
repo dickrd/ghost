@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.hehehey.ghost.network.HttpClient;
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
@@ -272,6 +274,11 @@ public class ZhihuBot {
                 .numberOfArgs(Option.UNLIMITED_VALUES)
                 .desc("id of the question to retrieve.")
                 .build());
+        options.addOption(Option.builder("u")
+                .longOpt("update")
+                .hasArg(false)
+                .desc("update all questions in database.")
+                .build());
         CommandLine line;
         try {
             line = parser.parse(options, args);
@@ -295,6 +302,19 @@ public class ZhihuBot {
 
         BasicHeader authorizationHeader = new BasicHeader("authorization", line.getOptionValue("auth"));
         ZhihuBot zhihuBot = new ZhihuBot(line.getOptionValue("mongodb"));
+
+        if (line.hasOption("update")) {
+            List<BasicDBObject> optionList = new ArrayList<>();
+            optionList.add(new BasicDBObject("$group", new BasicDBObject("_id", "$questionId")));
+            AggregateIterable<Document> questionIds = zhihuBot.database.getCollection("answer")
+                    .aggregate(optionList);
+            for (Document questionId: questionIds)
+            {
+                logger.info("Updating question: " + questionId);
+                zhihuBot.getAnswer(authorizationHeader, questionId.getString("_id"), true);
+                httpClient.saveCookie();
+            }
+        }
 
         if (line.hasOption("question")) {
             for (String questionId : line.getOptionValues("question")) {
