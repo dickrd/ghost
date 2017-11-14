@@ -41,7 +41,7 @@ public class ZhihuBot {
     private static final long memberUpdateTimeSpan = 7 * 24 * 60 * 60;
 
     private static final String questionApiUrl = "https://www.zhihu.com/api/v4/questions/{0}/answers?sort_by=default" +
-            "&include=data%5B*%5D.content%2Cvoteup_count%2Ccreated_time%2Cupdated_time%3Bdata%5B*%5D.author.follower_count" +
+            "&include=data%5B*%5D.id%2Cvoteup_count%2Cthanks_count%2Ccomment_count%2Ccreated_time%2Cupdated_time%2Ccontent%3Bdata%5B*%5D.author.id%3Bdata%5B*%5D.question.id%2Ctitle" +
             "&limit={1}" +
             "&offset={2}";
     private static final String memberApiUrl = "https://www.zhihu.com/api/v4/members/{0}?include=" +
