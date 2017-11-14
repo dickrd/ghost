@@ -45,7 +45,7 @@ public class ZhihuBot {
             "&limit={1}" +
             "&offset={2}";
     private static final String memberApiUrl = "https://www.zhihu.com/api/v4/members/{0}?include=" +
-            "locations%2Cemployments%2Cgender%2Ceducations%2Cbusiness%2Cvoteup_count%2Cthanked_count%2Cfollower_count%2Cfollowing_count%2Cavatar_url%2Cdescription";
+            "id%2Cname%2Cgender%2Cavatar_url%2Cdescription%2Cheadline%2Cvoteup_count%2Cthanked_count%2Cfollower_count%2Cfollowing_count%2Clocations%2Ceducations%2Cemployments%2Cbusiness";
 
     private final MongoDatabase database;
 
